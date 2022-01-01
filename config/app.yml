@@ -1,0 +1,22 @@
+defaults: &defaults
+  max_rows: 15
+  max_columns: 6
+  date_time_format: '%e %B %Y at %H:%M'
+  sort_books_by: 'title ASC'
+
+  aws_locale: 'GB'
+  aws_search_index: 'Books'
+  aws_access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  aws_secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+
+  google_client_cx: <%= ENV['GOOGLE_CLIENT_CX'] %>
+  google_client_key: <%= ENV['GOOGLE_CLIENT_KEY'] %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

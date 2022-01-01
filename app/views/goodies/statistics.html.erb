@@ -1,0 +1,39 @@
+<% provide(:title, "Book Statistics") %>
+
+<div class="row">
+
+  <div class="col-sm-4 text-center">
+    <h5>Genres</h5>
+    <%= pie_chart(@genres, colors: ['#FFA500']) %>
+  </div>
+
+  <div class="col-sm-4 text-center">
+    <h5>Categories</h5>
+    <%= pie_chart(@categories, colors: ['#FFA500']) %>
+  </div>
+
+  <div class="col-sm-4 text-center">
+    <h5>Users</h5>
+    <%= pie_chart(@users, colors: ['#FFA500']) %>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-sm-4 text-center">
+    <h5>Authors</h5>
+    <%= pie_chart(@authors, colors: ['#FFA500']) %>
+  </div>
+
+  <div class="col-sm-4 text-center">
+    <h5>Publishers</h5>
+    <%= pie_chart(@publishers, colors: ['#FFA500']) %>
+  </div>
+
+  <div class="col-sm-4 text-center">
+    <h5>Colors</h5>
+    <%= pie_chart(@colors, colors: ['#FFA500']) %>
+  </div>
+
+</div>

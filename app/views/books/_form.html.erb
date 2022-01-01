@@ -1,0 +1,72 @@
+<%= simple_form_for @book, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f| %>
+
+  <%= f.error_notification %>
+
+  <div class="row">
+
+    <div class="col-md-8">
+      <div id="my-tab-content" class="tab-content">
+
+        <div class="tab-pane active" id="book">
+          <br>
+          <%= f.input :title, autofocus: true %>
+          <%= f.input :author, label: 'Author(s)' %>
+          <%= f.association :publisher, collection: Publisher.order('name ASC') %>
+          <%= f.association :language, collection: Language.order('local ASC'), label_method: :local %>
+          <%= f.association :genre, collection: Genre.order('name ASC') %>
+          <%= f.association :user, :label => 'Owner' %>
+          <% if params[:action] == 'new' %>
+            <%= f.association :category, collection: Category.order('name ASC'), selected: Category.where(DEFAULT_CATEGORY).first.id %>
+          <% else %>
+            <%= f.association :category, collection: Category.order('name ASC') %>
+          <% end %>
+          <%= f.association :color, collection: Color.order('name ASC') %>
+          <%= f.input :location %>
+          <%= f.association :collection, collection: Collection.order('name ASC') %>
+          <%= f.input :description, as: :text %>
+        </div>
+
+        <div class="tab-pane" id="loan">
+          <br>
+          <%= f.input :borrower %>
+        </div>
+
+        <div class="tab-pane" id="amazon">
+          <br>
+          <%= f.input :amazon_title, label: 'Book title', placeholder: 'Book title', disabled: true %>
+          <%= f.input :amazon_author, label: 'Author', placeholder: 'Author', disabled: true %>
+          <%= f.input :amazon_publisher, label: 'Publisher', placeholder: 'Publisher', disabled: true %>
+          <%= f.input :amazon_isbn, label: 'ISBN code', placeholder: 'International Standard Book Number', disabled: true %>
+          <%= f.input :amazon_asin, label: 'ASIN code', placeholder: 'Amazon Standard Identification Number', disabled: true %>
+          <%= f.input :amazon_url, label: 'Amazon URL', placeholder: 'Amazon URL', disabled: true %>
+          <%= f.input :amazon_image_url, label: 'Image URL', placeholder: 'Image URL', disabled: true %>
+          <%= f.input :amazon_updated_at, label: 'Updated at', placeholder: 'Last Updated', as: :string, disabled: true %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <br>
+      <%= image_tag @book.amazon_image_url if @book.amazon_image_url %>
+      <% if params[:action] == 'edit' && params[:controller] == 'books' && @book.amazon_info == false %>
+        <%= image_tag "no-cover.jpg" %>
+        <br>
+        <br>
+        <ul style="list-style-type: circle">
+          <li><%= link_to "Search by book title", amazon_search_path + '?q=' + @book.title + '&id=' + @book.id.to_s %></li>
+          <li><%= link_to "Search by author", amazon_search_path + '?q=' + @book.author + '&id=' + @book.id.to_s %></li>
+          <li><%= link_to "Search by publisher", amazon_search_path + '?q=' + @book.publisher.name + '&id=' + @book.id.to_s %></li>
+        </ul>
+      <% end %>
+    </div>
+
+  </div>
+
+  <%= f.submit "Save Details", class: "btn btn-success" %>
+
+  <% if @book.amazon_info && !@book.amazon_skipped %>
+    <%= link_to 'Delete Amazon Info', remove_amazon_path, method: :post, class: "btn btn-default", :data => { :confirm => 'Are you sure?' } %>
+  <% end %>
+
+<% end %>

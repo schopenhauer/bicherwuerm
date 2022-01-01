@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_url %>"><%= APP_TITLE %></a>
+    </div>
+
+    <% if defined?(Devise) %>
+      <% if user_signed_in? %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li<%= active_controller?('books') %>><%= link_to '<span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books'.html_safe, books_path, title: pluralize(Book.all.size, 'book') %></li>
+            <li<%= active_controller?('genres') %>><%= link_to '<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Genres'.html_safe, genres_path, title: pluralize(Genre.all.size, 'genre') %></li>
+            <li<%= active_controller?('publishers') %>><%= link_to '<span class="glyphicon glyphicon-education" aria-hidden="true"></span> Publishers'.html_safe, publishers_path, title: pluralize(Publisher.all.size, 'publisher') %></li>
+          </ul>
+          <%= form_tag(search_request(params[:controller]), method: "get", id: "search-form", enforce_utf8: false, class: 'navbar-form navbar-left', role: 'search') do %>
+            <div class="form-group">
+              <%= text_field_tag :q, params[:q], placeholder: 'Sichs Du e Buch?', class: 'form-control' %>
+            </div>
+            <!-- <%= submit_tag 'Search', :name => nil, :class => 'btn btn-default' %> -->
+          <% end %>
+      <% end %>
+    <% end %>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if defined?(Devise) %>
+        <% if user_signed_in? %>
+          <li><%= link_to '<span class="glyphicon glyphicon-file" aria-hidden="true"></span> New Book'.html_safe, new_book_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              Workbench <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+
+              <li class="dropdown-header">Admin Panel</li>
+              <li<%= active_controller?('categories') %>><%= link_to "Manage Categories", categories_path, title: pluralize(Category.all.size, 'categories') %></li>
+              <li<%= active_controller?('languages') %>><%= link_to "Manage Languages", languages_path, title: pluralize(Language.all.size, 'language') %></li>
+              <li<%= active_controller?('collections') %>><%= link_to "Manage Collections", collections_path, title: pluralize(Collection.all.size, 'collection') %></li>
+              <li<%= active_controller?('colors') %>><%= link_to "Manage Colors", colors_path, title: pluralize(Color.all.size, 'color') %></li>
+              <% if current_user.admin? %>
+                <li<%= active_controller?('users') %>><%= link_to "Manage Users", users_path, title: pluralize(User.all.size, 'user') %></li>
+                <li class="divider"></li>
+              <% end %>
+
+              <li class="dropdown-header">Tools</li>
+              <li<%= active_action?('loans') %>><%= link_to "Outstanding Loans", loans_path, title: pluralize(Book.loans.size, 'loan') %></li>
+              <li<%= active_action?('statistics') %>><%= link_to "Book Statistics", statistics_path %></li>
+              <li<%= active_controller?('backup') %>><%= link_to "Backup Database", backups_path %></li>
+              <li class="divider"></li>
+
+              <li class="dropdown-header">External Data</li>
+              <li<%= active_action_and_controller?('robot', 'amazon') %>><%= link_to "Amazon Image Robot", amazon_robot_path %></li>
+              <li<%= active_action_and_controller?('search', 'amazon') %>><%= link_to "Amazon Image Search", amazon_search_path %></li>
+              <li<%= active_action_and_controller?('search', 'google') %>><%= link_to "Google Image Search", google_search_path %></li>
+
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              Account <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li<%= active_action_and_controller?('edit', 'devise/registrations') %>><%= link_to "Edit Account", edit_user_registration_path %></li>
+              <li<%= active_controller?('ideas') %>><%= link_to "My Ideas", ideas_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Login", new_user_session_path %></li>
+          <li><%#= link_to "Sign Up", new_user_registration_path %></li>
+        <% end %>
+      <% end %>
+    </ul>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>

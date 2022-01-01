@@ -1,0 +1,10 @@
+<%= simple_form_for @category, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= f.input :name, label: 'Category', autofocus: true %>
+  <%= f.input :description %>
+
+  <%= f.submit "Save", class: "btn btn-success" %>
+
+<% end %>
