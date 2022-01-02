@@ -20,7 +20,7 @@
           </ul>
           <%= form_tag(search_request(params[:controller]), method: "get", id: "search-form", enforce_utf8: false, class: 'navbar-form navbar-left', role: 'search') do %>
             <div class="form-group">
-              <%= text_field_tag :q, params[:q], placeholder: 'Sichs Du e Buch?', class: 'form-control' %>
+              <%= text_field_tag :q, params[:q], placeholder: 'Sichs Du e ' + (active_controller?('publishers') ? 'Publisher' : (active_controller?('genres') ? 'Genre' : 'Buch')) + '?', class: 'form-control' %>
             </div>
             <!-- <%= submit_tag 'Search', :name => nil, :class => 'btn btn-default' %> -->
           <% end %>
