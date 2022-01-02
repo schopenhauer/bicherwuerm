@@ -49,7 +49,7 @@ class ColorsController < ApplicationController
   def destroy
     @color.destroy
     respond_to do |format|
-      format.html { redirect_to edit_color_path(@color), notice: 'Color was successfully destroyed.' }
+      format.html { redirect_to edit_color_path(@color), notice: 'Color was successfully deleted.' }
       format.json { head :no_content }
     end
   end

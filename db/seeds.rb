@@ -52,10 +52,10 @@ Color.create([
                { name: 'Turquoise', description: 'Turquoise Bicher', hex_code: '#34dddd' }
              ])
 
-# Populate users (default password = password)
+# Populate users (default password: password)
 User.create([
-              { name: 'John Smith', email: 'john.smith@bicherwuerm.org', password: 'password', admin: true, encrypted_password: '$2a$10$vZByqNJMfmadnUqHTqKQjuYJtYmGmwDaSfn.V0zjRADPSXQibPYEG', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: '::1', last_sign_in_ip: '::1' },
-              { name: 'Alex Cass', email: 'alex.cass@bicherwuerm.org', password: 'password', admin: false, encrypted_password: '$2a$10$vZByqNJMfmadnUqHTqKQjuYJtYmGmwDaSfn.V0zjRADPSXQibPYEG', reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: '::1', last_sign_in_ip: '::1' }
+              { name: 'John Smith', email: 'john.smith@bicherwuerm.org', password: 'password', admin: true, encrypted_password: '$2a$10$vZByqNJMfmadnUqHTqKQjuYJtYmGmwDaSfn.V0zjRADPSXQibPYEG' },
+              { name: 'Alex Cass', email: 'alex.cass@bicherwuerm.org', password: 'password', admin: false, encrypted_password: '$2a$10$vZByqNJMfmadnUqHTqKQjuYJtYmGmwDaSfn.V0zjRADPSXQibPYEG' }
             ])
 
 # Generate fake books

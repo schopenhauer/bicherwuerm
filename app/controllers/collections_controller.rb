@@ -49,7 +49,7 @@ class CollectionsController < ApplicationController
   def destroy
     @collection.destroy
     respond_to do |format|
-      format.html { redirect_back fallback_location: collections_url, notice: 'Collection was successfully destroyed.' }
+      format.html { redirect_back fallback_location: collections_url, notice: 'Collection was successfully deleted.' }
       format.json { head :no_content }
     end
   end

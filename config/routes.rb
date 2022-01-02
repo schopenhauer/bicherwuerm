@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  root 'goodies#home'
+
   resources :users, except: :create
   post 'create_user' => 'users#create', as: :create_user
 
   resources :books
   resources :ideas
 
-  get 'amazon/add' => 'amazon#add_amazon_details', as: :add_amazon
-  post 'books/reset/:id' => 'books#remove_amazon_details', as: :remove_amazon
-
   resources :collections, :languages, :publishers, :categories, :users, :genres, :colors do
     resources :books, only: [:index]
   end
 
-  root 'goodies#home'
+  get 'amazon/add' => 'amazon#add_amazon_details', as: :add_amazon
+  post 'books/reset/:id' => 'books#remove_amazon_details', as: :remove_amazon
 
   get 'about' => 'goodies#about'
   get 'loans' => 'books#loans'

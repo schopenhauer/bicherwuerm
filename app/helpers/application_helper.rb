@@ -2,9 +2,9 @@ module ApplicationHelper
 
   def full_title(page_title = '')
     if page_title.empty?
-      APP_TITLE
+      APP_CONFIG['application_name']
     else
-      "#{APP_TITLE} &raquo; #{page_title}".html_safe
+      "#{APP_CONFIG['application_name']} » #{page_title}"
     end
   end
 
