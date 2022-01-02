@@ -10,7 +10,7 @@ The app provides access to the [Amazon Product Advertising API](https://github.c
 
 ### Minimal configuration
 
-The app picks up the `DATABASE_URL` environment variable (e.g. _mysql2://&lt;username&gt;;&lt;password&gt;@&lt;host&gt;/&lt;database&gt;_). By default, the app uses SQLite in development and MySQL in production environments.
+The app picks up the `DATABASE_URL` environment variable (e.g. _mysql2://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;database&gt;_). By default, the app uses SQLite in development and MySQL in production environments.
 
 You can generate a new `config/master.key` file or `RAILS_MASTER_KEY` environment variable the using the `rails credentials:edit` command.
 
