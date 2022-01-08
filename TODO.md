@@ -12,3 +12,4 @@
 - Change grid settings
 - Book ratings (cf. https://github.com/wbotelhos/rating) -- only works on PostgreSQL
 - Access right management
+- Admin: edit someone else's account settings & name & password

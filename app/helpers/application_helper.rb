@@ -1,11 +1,7 @@
 module ApplicationHelper
 
-  def full_title(page_title = '')
-    if page_title.empty?
-      APP_CONFIG['application_name']
-    else
-      "#{APP_CONFIG['application_name']} » #{page_title}"
-    end
+  def full_title(title = '')
+    APP_CONFIG['application_name'] + " » #{title}" unless title.empty?
   end
 
   def clean_url(url)

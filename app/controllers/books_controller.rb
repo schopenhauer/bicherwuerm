@@ -12,12 +12,12 @@ class BooksController < ApplicationController
         @filter = Publisher.find(params[:publisher_id]).name
 
       elsif params[:category_id]
-        @books = Book.where(category_id: params[:category_id])
+        @books = Book.where(category_id: Category.find(params[:category_id]))
         @filter = Category.find(params[:category_id]).name
 
       elsif params[:language_id]
-        @books = Book.where(language_id: Language.friendly.find(params[:language_id]).id)
-        @filter = Language.friendly.find(params[:language_id]).name
+        @books = Book.where(language_id: Language.find(params[:language_id]))
+        @filter = Language.find(params[:language_id]).name
 
       elsif params[:genre_id]
         @books = Book.where(genre_id: params[:genre_id])
@@ -32,8 +32,8 @@ class BooksController < ApplicationController
         @filter = Collection.find(params[:collection_id]).name
 
       elsif params[:color_id]
-        @books = Book.where(color_id: Color.friendly.find(params[:color_id]).id)
-        @filter = Color.friendly.find(params[:color_id]).name
+        @books = Book.where(color_id: Color.find(params[:color_id]))
+        @filter = Color.find(params[:color_id]).name
 
       else
         @books = Book.all

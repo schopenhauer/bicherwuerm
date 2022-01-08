@@ -4,6 +4,7 @@ class Book < ActiveRecord::Base
   belongs_to :category
   belongs_to :genre
   belongs_to :user
+  
   belongs_to :collection, optional: true
   belongs_to :color, optional: true
 
@@ -18,7 +19,7 @@ class Book < ActiveRecord::Base
   before_save :update_loan_flag
   before_save :sanitize_strings
 
-  default_scope { order(APP_CONFIG['sort_books_by']) }
+  default_scope { order(APP_CONFIG['book_order']) }
 
   scope :loans, -> { where(loan: true) }
   scope :amazon_info, -> { where(amazon_info: true, amazon_skipped: false) }

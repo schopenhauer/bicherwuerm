@@ -16,7 +16,7 @@
   <% @publishers.each do |publisher| %>
     <tr>
       <td><b><%= link_to publisher.name, edit_publisher_path(publisher) %></b></td>
-      <td><%= link_to short_url(publisher.website), clean_url(publisher.website), target: '_new' %></td>
+      <td><%= link_to short_url(publisher.website), clean_url(publisher.website), target: '_new' unless publisher.website.nil? %></td>
       <td><%= truncate(publisher.description, length: 50, omission: '...') %></td>
       <td><%= pluralize(Book.where(publisher_id: publisher.id).size, 'book') %>
         (<%= number_to_percentage(Book.where(publisher_id: publisher.id).size.to_f / @total_book_count * 100, precision: 1) %>)

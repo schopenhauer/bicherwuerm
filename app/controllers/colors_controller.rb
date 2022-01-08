@@ -4,7 +4,7 @@ class ColorsController < ApplicationController
 
   def index
     @total_book_count = Book.all.size
-    @colors = Color.friendly.page(params[:page]).per(APP_CONFIG['max_rows']).order('name ASC')
+    @colors = Color.page(params[:page]).per(APP_CONFIG['max_rows']).order('name ASC')
     if params[:q]
       @colors = @colors.where('(name LIKE ? OR description LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
     end
@@ -57,7 +57,7 @@ class ColorsController < ApplicationController
   private
 
   def set_color
-    @color = Color.friendly.find(params[:id])
+    @color = Color.find(params[:id])
   end
 
   def color_params

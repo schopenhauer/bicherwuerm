@@ -31,12 +31,12 @@
         </b>
         <%= content_tag(:span, 'on loan', class: "label label-primary", title: 'This book has been borrowed by ' + book.borrower + '.') if book.loan %>
       </td>
-      <td><%= link_to book.author, :q => book.author %></td>
-      <td><%= link_to book.publisher.name, publisher_books_path(book.publisher_id) %></td>
-      <td><%= link_to book.genre.name, genre_books_path(book.genre_id) %></td>
+      <td><%= link_to book.author, q: book.author %></td>
+      <td><%= link_to book.publisher.name, publisher_books_path(book.publisher) %></td>
+      <td><%= link_to book.genre.name, genre_books_path(book.genre) %></td>
       <td><%= link_to book.language.local, language_books_path(book.language) %></td>
-      <td><%= link_to book.category.name, category_books_path(book.category_id) %></td>
-      <td><%= link_to book.user.name, user_books_path(book.user_id) %></td>
+      <td><%= link_to book.category.name, category_books_path(book.category) %></td>
+      <td><%= link_to book.user.name, user_books_path(book.user) %></td>
       <td><%= book.location %></td>
       <td>
         <%= link_to image_tag('icon_amazon2.png', height: 20, width: 20), book.amazon_url, target: '_blank', title: 'Go to Amazon\'s product page (external link)' if book.amazon_url? %>

@@ -3,10 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 
-#can be deleted?
-#gem "autoprefixer-rails"
-#gem "uglifier", ">= 1.3.0"
-
 gem "rails", "~> 7.0.1"
 gem "bundler", "~> 2"
 gem "importmap-rails"

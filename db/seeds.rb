@@ -32,8 +32,8 @@ if Rails.env.production?
   end
 
 else
-  Publisher.create(name: 'Publisher')
-  Genre.create(name: 'Genre')
+  Publisher.create(name: 'Penguin Books')
+  Genre.create(name: 'Drama')
 end
 
 # Populate collections

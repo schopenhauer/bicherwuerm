@@ -1,4 +1,4 @@
-class AddAmazonToBooks < ActiveRecord::Migration[5.0]
+class AddAmazonToBooks < ActiveRecord::Migration[7.0]
   def change
     add_column :books, :amazon_title, :string
     add_column :books, :amazon_author, :string

@@ -57,7 +57,7 @@ class LanguagesController < ApplicationController
   private
 
   def set_language
-    @language = Language.friendly.find(params[:id])
+    @language = Language.find(params[:id])
   end
 
   def language_params

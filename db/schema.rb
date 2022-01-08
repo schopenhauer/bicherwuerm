@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_07_053133) do
+ActiveRecord::Schema.define(version: 2022_01_08_203420) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2022_01_07_053133) do
     t.boolean "amazon_info", default: false
     t.boolean "amazon_skipped", default: false
     t.index ["category_id"], name: "index_books_on_category_id"
-    t.index ["color_id"], name: "index_books_on_color_id"
     t.index ["collection_id"], name: "index_books_on_collection_id"
+    t.index ["color_id"], name: "index_books_on_color_id"
     t.index ["genre_id"], name: "index_books_on_genre_id"
     t.index ["language_id"], name: "index_books_on_language_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2022_01_07_053133) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "collections", force: :cascade do |t|
@@ -148,14 +150,6 @@ ActiveRecord::Schema.define(version: 2022_01_07_053133) do
     t.index ["resource_type", "resource_id", "scopeable_type", "scopeable_id"], name: "index_rating_rating_on_resource_and_scopeable", unique: true
     t.index ["resource_type", "resource_id"], name: "index_rating_ratings_on_resource"
     t.index ["scopeable_type", "scopeable_id"], name: "index_rating_ratings_on_scopeable"
-  end
-
-  create_table "settings", force: :cascade do |t|
-    t.string "var", null: false
-    t.text "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
   create_table "users", force: :cascade do |t|
