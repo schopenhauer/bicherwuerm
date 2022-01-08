@@ -382,6 +382,7 @@ DEPENDENCIES
   http
   humanize_boolean
   importmap-rails
+  io-wait (= 0.2.1)
   jbuilder
   jquery-rails
   kaminari
