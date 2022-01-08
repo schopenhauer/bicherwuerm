@@ -4,7 +4,7 @@
 
 Bicherwuerm is a book management app developed with [Ruby on Rails](http://rubyonrails.org), which allows you to add, edit and remove books in your library and manage associated records of publishers, genres, categories, collections and colours.
 
-The app provides access to the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum) and [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) to fetch book details and cover images. You need to have an active [Amazon Associates](https://affiliate-program.amazon.com) account to be able to use the Amazon API.
+The app can access to the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum) and [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) to fetch book details and covers. You need to have an active [Amazon Associates](https://affiliate-program.amazon.com) account to be able to use the Amazon API.
 
 ## Configuration
 
@@ -29,7 +29,7 @@ sendgrid:
 
 ### Optional configuration
 
-You may customise some of the app's default values in the `config/app.yml`.
+You may customise the app's default values in the `config/app.yml`.
 
 ## Usage
 
