@@ -34,6 +34,7 @@ gem "multi_json"
 gem "rating"
 gem "bootsnap", require: false
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "io-wait", "~> 0.2.1"
 
 source "https://rails-assets.org" do
   gem "rails-assets-highcharts"
