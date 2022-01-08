@@ -382,7 +382,6 @@ DEPENDENCIES
   http
   humanize_boolean
   importmap-rails
-  io-wait (= 0.2.1)
   jbuilder
   jquery-rails
   kaminari
@@ -391,7 +390,7 @@ DEPENDENCIES
   mysql2
   puma (~> 5.0)
   rack-mini-profiler
-  rails (~> 7.0.1)
+  rails (~> 7.0.0)
   rails-assets-chartkick!
   rails-assets-highcharts!
   rating
