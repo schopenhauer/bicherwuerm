@@ -4,8 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.3'
 
 gem 'rails', '~> 7.0'
-gem 'bootsnap', '>= 1.4.2'
 gem 'bundler', '~> 2'
+gem 'bootsnap', '>= 1.4.2'
+gem 'importmap-rails'
 gem 'dotenv-rails'
 gem 'chartkick'
 gem 'vacuum'
@@ -26,8 +27,8 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
-gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
+gem 'jquery-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
@@ -60,8 +61,8 @@ end
 
 group :production do
   gem 'mysql2'
-  gem 'mini_racer'
   # gem 'pg'
+  gem 'mini_racer'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
