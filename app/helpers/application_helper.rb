@@ -11,9 +11,9 @@ module ApplicationHelper
   def clean_url(link = '', remove_path = true)
     if remove_path
       # Remove HTTP and HTTPS (as well as path?)
-      link.sub(%r{/^https?\:\/\/(www.)?/}, '').sub(%r{/\/.*$/}, '')
+      link.gsub(%r{/^https?\:\/\/(www.)?/}, '').sub(%r{/\/.*$/}, '')
     else
-      link.sub(%r{/^https?\:\/\//}, '').sub(%r{/^www./}, '')
+      link.gsub(%r{/^https?\:\/\//}, '').sub(%r{/^www./}, '')
     end
   end
 
@@ -29,7 +29,7 @@ module ApplicationHelper
     content_tag(:p) { "This #{name} was added on #{safe_timestamp(obj.created_at)} and last updated on #{safe_timestamp(obj.updated_at)}." }
   end
 
-  def search_request(controller)
+  def search_path(controller)
     case controller
     when 'books'
       books_path
@@ -42,16 +42,16 @@ module ApplicationHelper
     end
   end
 
-  def active_controller?(controller)
+  def is_active_controller?(controller)
     ' class="active"'.html_safe if params[:controller] == controller
   end
 
-  def active_action?(action)
+  def is_active_action?(action)
     ' class="active"'.html_safe if params[:action] == action
   end
 
-  def active_action_and_controller?(action, controller)
-    ' class="active"'.html_safe if params[:action] == action && params[:controller] == controller
+  def is_active_action_and_controller?(action, controller)
+    is_active_action?(action) && is_active_controller?(controller)
   end
 
 end

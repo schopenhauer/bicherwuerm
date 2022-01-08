@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(version: 2022_01_07_053133) do
     t.integer "resource_id", null: false
     t.string "scopeable_type", limit: 10
     t.integer "scopeable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["author_type", "author_id", "resource_type", "resource_id", "scopeable_type", "scopeable_id"], name: "index_rating_rates_on_author_and_resource_and_scopeable", unique: true
     t.index ["author_type", "author_id"], name: "index_rating_rates_on_author"
     t.index ["resource_type", "resource_id"], name: "index_rating_rates_on_resource"
@@ -143,8 +143,8 @@ ActiveRecord::Schema.define(version: 2022_01_07_053133) do
     t.integer "resource_id", null: false
     t.string "scopeable_type", limit: 10
     t.integer "scopeable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["resource_type", "resource_id", "scopeable_type", "scopeable_id"], name: "index_rating_rating_on_resource_and_scopeable", unique: true
     t.index ["resource_type", "resource_id"], name: "index_rating_ratings_on_resource"
     t.index ["scopeable_type", "scopeable_id"], name: "index_rating_ratings_on_scopeable"

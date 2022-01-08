@@ -13,15 +13,14 @@
  *= require_tree .
  *= require_self
  */
-//Import bootstrap-sprockets
+
+// Import bootstrap-sprockets
 @import "bootstrap-sprockets";
-// Import cerulean variables
 @import "bootswatch/paper/variables";
-// Then bootstrap itself
 @import "bootstrap";
-@import url("//fonts.googleapis.com/css?family=Sintony");
-// And finally bootswatch style itself
 @import "bootswatch/paper/bootswatch";
+
+@import url("//fonts.googleapis.com/css?family=Sintony");
 
 body {
   font-family: 'Sintony', sans-serif;
