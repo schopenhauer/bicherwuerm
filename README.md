@@ -4,33 +4,32 @@
 
 Bicherwuerm is a book management app developed with [Ruby on Rails](http://rubyonrails.org), which allows you to add, edit and remove books in your library and manage associated records of publishers, genres, categories, collections and colours.
 
-The app provides access to the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum) and [Google Custom Search API](https://developers.google.com/api-client-library/ruby/apis/customsearch/v1) to fetch book details and cover images. You need to have an active [Amazon Associates](https://affiliate-program.amazon.com) account to be able to use the Amazon API.
+The app provides access to the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum) and [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) to fetch book details and cover images. You need to have an active [Amazon Associates](https://affiliate-program.amazon.com) account to be able to use the Amazon API.
 
 ## Configuration
 
 ### Minimal configuration
 
-The app picks up the `DATABASE_URL` environment variable (e.g. _mysql2://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;database&gt;_). By default, the app uses SQLite in development and MySQL in production environments.
+By default, the app uses SQLite and MariaDB/MySQL in development and production environments respectively. In production, the app picks up the `DATABASE_URL` environment variable (e.g. _mysql2://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;database&gt;_).
 
-You can generate a new `config/master.key` file or `RAILS_MASTER_KEY` environment variable the using the `rails credentials:edit` command.
+You should run `rails credentials:edit` to configure the credentials for the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum), the [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) and the [SendGrid API](https://sendgrid.com/docs/API_Reference/index.html). Please make sure to provide the `config/master.key` file or set the `RAILS_MASTER_KEY` environment variable.
 
-### Advanced configuration
+```
+aws:
+  access_key: ...
+  secret_key: ...
 
-You may customise default values in the `config/app.yml` and `config/database.yml` configuration files.
+google:
+  client_cx: ...
+  client_key: ...
 
-Set these environment variables to use the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum):
+sendgrid:
+  api_key: ...
+```
 
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
+### Optional configuration
 
-Set these environment variables to use the [Google Custom Search API](https://developers.google.com/api-client-library/ruby/apis/customsearch/v1):
-
-- `GOOGLE_CLIENT_CX`
-- `GOOGLE_CLIENT_KEY`
-
-Set this environment variable to use the [SendGrid API](https://sendgrid.com/docs/API_Reference/index.html):
-
-- `SENDGRID_API_KEY`
+You may customise some of the app's default values in the `config/app.yml`.
 
 ## Usage
 
