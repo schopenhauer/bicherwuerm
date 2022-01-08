@@ -20,8 +20,8 @@
       <td><b><%= idea.author %></b></td>
       <td><%= idea.description %></td>
       <td><%= idea.user.name %></td>
-      <td><%= safe_timestamp(idea.created_at) %></td>
-      <td><%= safe_timestamp(idea.updated_at) %></td>
+      <td><%= timestamp(idea.created_at) %></td>
+      <td><%= timestamp(idea.updated_at) %></td>
       <td>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_idea_path(idea), :class => 'btn btn-primary btn-xs' %>

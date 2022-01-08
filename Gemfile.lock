@@ -331,8 +331,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
@@ -408,7 +406,6 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
-  uglifier (>= 1.3.0)
   vacuum
   validates_formatting_of
   web-console

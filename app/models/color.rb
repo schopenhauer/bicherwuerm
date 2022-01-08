@@ -6,7 +6,7 @@ class Color < ApplicationRecord
 
   validates :name, presence: true
   validates :hex_code, presence: false, format: {
-    with: VALID_COLOR,
+    with: %r{^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$},
     multiline: true
   }
 

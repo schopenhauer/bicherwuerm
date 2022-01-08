@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2022_01_07_053133) do
     t.boolean "amazon_info", default: false
     t.boolean "amazon_skipped", default: false
     t.index ["category_id"], name: "index_books_on_category_id"
-    t.index ["collection_id"], name: "index_books_on_collection_id"
     t.index ["color_id"], name: "index_books_on_color_id"
+    t.index ["collection_id"], name: "index_books_on_collection_id"
     t.index ["genre_id"], name: "index_books_on_genre_id"
     t.index ["language_id"], name: "index_books_on_language_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"

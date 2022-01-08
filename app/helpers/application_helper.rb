@@ -8,16 +8,15 @@ module ApplicationHelper
     end
   end
 
-  def clean_url(link = '', remove_path = true)
-    if remove_path
-      # Remove HTTP and HTTPS (as well as path?)
-      link.gsub(%r{/^https?\:\/\/(www.)?/}, '').sub(%r{/\/.*$/}, '')
-    else
-      link.gsub(%r{/^https?\:\/\//}, '').sub(%r{/^www./}, '')
-    end
+  def clean_url(url)
+    Domainatrix.parse(url).url
   end
 
-  def safe_timestamp(timestamp)
+  def short_url(url)
+    url.sub(/^https?\:\/\/(www.)?/,'').chomp('/')
+  end
+
+  def timestamp(timestamp)
     if timestamp.nil?
       'n.a.'
     else
@@ -26,7 +25,7 @@ module ApplicationHelper
   end
 
   def pretty_timestamp(obj, name)
-    content_tag(:p) { "This #{name} was added on #{safe_timestamp(obj.created_at)} and last updated on #{safe_timestamp(obj.updated_at)}." }
+    content_tag(:p) { "This #{name} was added on #{timestamp(obj.created_at)} and last updated on #{timestamp(obj.updated_at)}." }
   end
 
   def search_path(controller)

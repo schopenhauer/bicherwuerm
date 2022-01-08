@@ -5,10 +5,6 @@ class Publisher < ActiveRecord::Base
 
   after_destroy :reassign_books
 
-  def url
-    Domainatrix.parse(self.website).url
-  end
-
   private
 
   # Make sure each book has a publisher

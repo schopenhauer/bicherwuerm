@@ -34,6 +34,7 @@ end
 Collection.create([
                     { name: 'Gold', description: 'Gold Collection' },
                     { name: 'Silver', description: 'Silver Colection' },
+                    { name: 'Bronze', description: 'Bronze Colection' },
                   ])
 
 # Populate colors
@@ -58,8 +59,8 @@ User.create([
               { name: 'Alex Cass', email: 'alex.cass@bicherwuerm.org', password: 'password', admin: false, encrypted_password: '$2a$10$vZByqNJMfmadnUqHTqKQjuYJtYmGmwDaSfn.V0zjRADPSXQibPYEG' }
             ])
 
-# Generate fake books
-10.times do
+# Generate books
+25.times do
   Book.create(
     title: Faker::Address.street_name,
     author: Faker::Name.name,

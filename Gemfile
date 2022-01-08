@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 
+#gem "autoprefixer-rails" -- can be deleted?
+
 gem "rails", "~> 7.0.0"
 gem "bundler", "~> 2"
 gem "importmap-rails"
@@ -23,8 +25,7 @@ gem "bootstrap-sass"
 gem "bootstrap-sass-extras"
 gem "bootswatch-rails"
 gem "simple_form"
-#gem "autoprefixer-rails"
-gem "uglifier", ">= 1.3.0"
+#gem "uglifier", ">= 1.3.0"
 gem "turbo-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"

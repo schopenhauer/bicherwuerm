@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true,
             length: { maximum: 255 },
-            format: { with: VALID_EMAIL },
+            format: { with: %r{\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z} },
             uniqueness: { case_sensitive: false }
 
   rating as: :author

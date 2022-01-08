@@ -2,10 +2,10 @@ class Book < ActiveRecord::Base
   belongs_to :publisher
   belongs_to :language
   belongs_to :category
-  belongs_to :collection
-  belongs_to :color
   belongs_to :genre
   belongs_to :user
+  belongs_to :collection, optional: true
+  belongs_to :color, optional: true
 
   validates :title, presence: true
   validates :author, presence: true

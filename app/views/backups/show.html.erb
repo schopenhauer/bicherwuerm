@@ -20,10 +20,10 @@
     <tbody>
     <% @files.each do |file| %>
       <tr>
-        <td><b><%= link_to File.basename(file), download_sql_path(file: File.basename(file)) %></b></td>
+        <td><%= image_tag 'icon_sql.png', size: 20 %> <b><%= link_to File.basename(file), download_sql_path(file: File.basename(file)) %></b></td>
         <td><%= File.extname(file) %></td>
         <td><%= Filesize.from(File.stat(file).size.to_s + ' B').pretty %></td>
-        <td><%= safe_timestamp(File.ctime(file)) %></td>
+        <td><%= timestamp(File.ctime(file)) %></td>
         <td>
           <%= link_to 'Download',
                       download_sql_path(file: File.basename(file)),
