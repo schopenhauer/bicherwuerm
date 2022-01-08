@@ -1,4 +1,7 @@
-/* Custom page CSS */
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 body > .container {
   margin: 0 auto;
@@ -7,14 +10,4 @@ body > .container {
 
 .container .text-muted {
   margin: 10px 0;
-}
-
-.footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  text-align: left;
-}
-
-code {
-  font-size: 80%;
 }
