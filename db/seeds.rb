@@ -21,14 +21,17 @@ Category.create(name: 'DVD')
 # Populate publishers (from JSON file)
 publishers = ActiveSupport::JSON.decode(File.read('db/publishers.json'))
 publishers.each do |publisher|
-  Publisher.create(name: publisher['name'], description: publisher['description'], website: publisher['website'])
+  #Publisher.create(name: publisher['name'], description: publisher['description'], website: publisher['website'])
 end
 
 # Populate genres (from JSON file)
 genres = ActiveSupport::JSON.decode(File.read('db/genres.json'))
 genres.each do |genre|
-  Genre.create(name: genre['name'], description: genre['description'])
+  #Genre.create(name: genre['name'], description: genre['description'])
 end
+
+Publisher.create(name: 'Publisher', description: '', website: 'https://www.google.com')
+Genre.create(name: 'Genre', description: '')
 
 # Populate collections
 Collection.create([
