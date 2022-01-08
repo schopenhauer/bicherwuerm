@@ -16,13 +16,13 @@
     <tr>
       <td><b><%= link_to genre.name, edit_genre_path(genre) %></b></td>
       <td><%= genre.description %></td>
-      <td><%= pluralize(Book.where(genre_id: genre.id).size, 'book') %>
-        (<%= number_to_percentage(Book.where(genre_id: genre.id).size.to_f / @total_book_count * 100, precision: 1) %>)
+      <td><%= pluralize(genre.books.size, 'book') %>
+        (<%= number_to_percentage(genre.books.size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
       <td><%= timestamp(genre.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
-                    genre_books_path(genre.id), :class => 'btn btn-default btn-xs' %>
+                    genre_books_path(genre), :class => 'btn btn-default btn-xs' %>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_genre_path(genre), :class => 'btn btn-primary btn-xs' %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

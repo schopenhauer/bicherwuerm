@@ -18,13 +18,13 @@
       <td><b><%= link_to language.name, edit_language_path(language) %></b></td>
       <td><%= language.local %></td>
       <td><%= image_tag 'flags/' + language.acronym + '.png' if language.acronym? %> <%= language.acronym %></td>
-      <td><%= pluralize(Book.where(language_id: language.id).size, 'book') %>
-        (<%= number_to_percentage(Book.where(language_id: language.id).size.to_f / @total_book_count * 100, precision: 1) %>)
+      <td><%= pluralize(language.books.size, 'book') %>
+        (<%= number_to_percentage(language.books.size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
       <td><%= timestamp(language.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
-                    language_books_path(language.slug), :class => 'btn btn-default btn-xs' %>
+                    language_books_path(language), :class => 'btn btn-default btn-xs' %>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_language_path(language), :class => 'btn btn-primary btn-xs' %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

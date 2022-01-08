@@ -18,8 +18,8 @@
       <td><b><%= link_to color.name, edit_color_path(color.id) %></b></td>
       <td><%= color.description %></td>
       <td><%= content_tag(:span, color.hex_code, style: "font-weight: bold; color: " + color.hex_code) if color.hex_code? %></td>
-      <td><%= pluralize(color.books.count, 'book') %>
-        (<%= number_to_percentage(color.books.count.to_f / @total_book_count * 100, precision: 1) %>)
+      <td><%= pluralize(color.books.size, 'book') %>
+        (<%= number_to_percentage(color.books.size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
       <td><%= timestamp(color.updated_at) %></td>
       <td>

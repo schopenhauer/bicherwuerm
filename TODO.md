@@ -3,7 +3,7 @@
 ## Bug fixes
 
 - Upgrade Bootswatch themes + update layout
-- Upgrade Devise.rb
+- Fix ideas (belong to user only?)
 - Admin panel: edit users' account settings
 - Localisation: Clean up error messages and localisation files
 - Amazon Image Robot: Create affiliate account credentials to test `vacuum` gem

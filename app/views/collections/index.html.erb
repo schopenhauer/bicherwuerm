@@ -14,15 +14,15 @@
   <tbody>
   <% @collections.each do |collection| %>
     <tr>
-      <td><b><%= link_to collection.name, edit_collection_path(collection.id) %></b></td>
+      <td><b><%= link_to collection.name, edit_collection_path(collection) %></b></td>
       <td><%= collection.description %></td>
-      <td><%= pluralize(collection.books.count, 'book') %>
-        (<%= number_to_percentage(collection.books.count.to_f / @total_book_count * 100, precision: 1) %>)
+      <td><%= pluralize(collection.books.size, 'book') %>
+        (<%= number_to_percentage(collection.books.size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
       <td><%= timestamp(collection.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
-                    collection_books_path(collection.id), :class => 'btn btn-default btn-xs' %>
+                    collection_books_path(collection), :class => 'btn btn-default btn-xs' %>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_collection_path(collection), :class => 'btn btn-primary btn-xs' %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

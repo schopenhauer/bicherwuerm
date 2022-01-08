@@ -18,13 +18,13 @@
       <td><b><%= link_to publisher.name, edit_publisher_path(publisher) %></b></td>
       <td><%= link_to short_url(publisher.website), clean_url(publisher.website), target: '_new' unless publisher.website.nil? %></td>
       <td><%= truncate(publisher.description, length: 50, omission: '...') %></td>
-      <td><%= pluralize(Book.where(publisher_id: publisher.id).size, 'book') %>
-        (<%= number_to_percentage(Book.where(publisher_id: publisher.id).size.to_f / @total_book_count * 100, precision: 1) %>)
+      <td><%= pluralize(publisher.books.size, 'book') %>
+        (<%= number_to_percentage(publisher.books.size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
       <td><%= timestamp(publisher.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
-                    publisher_books_path(publisher.id), :class => 'btn btn-default btn-xs' %>
+                    publisher_books_path(publisher), :class => 'btn btn-default btn-xs' %>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_publisher_path(publisher), :class => 'btn btn-primary btn-xs' %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

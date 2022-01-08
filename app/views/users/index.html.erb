@@ -8,9 +8,9 @@
     <th>Admin?</th>
     <th>Last updated</th>
     <th>Last login</th>
-    <th>Last known IP</th>
+    <th>Last IP address</th>
     <th>Number of books</th>
-    <th>Sign in count</th>
+    <th>Login count</th>
     <th>Books</th>
   </tr>
   </thead>
@@ -24,20 +24,20 @@
       <td><%= timestamp(user.updated_at) %></td>
       <td><%= timestamp(user.last_sign_in_at) %></td>
       <td><%= user.last_sign_in_ip %></td>
-      <td><%= pluralize(Book.where(user_id: user.id).size, 'book') %>
-        (<%= number_to_percentage(Book.where(user_id: user.id).size.to_f / @total_book_count * 100, precision: 1) %>)
+      <td><%= pluralize(user.books.size, 'book') %>
+        (<%= number_to_percentage(user.books.size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
       <td><%= user.sign_in_count %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
-                    user_books_path(user.id), :class => 'btn btn-default btn-xs' %>
+                    user_books_path(user), :class => 'btn btn-default btn-xs' %>
         <%#= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_registration_path, :class => 'btn btn-primary btn-xs' if (current_user == user) %>
-        <!-- <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+        <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
                          user,
                          :method => :delete,
                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                         :class => 'btn btn-danger btn-xs' if (current_user != user) %> -->
+                         :class => 'btn btn-danger btn-xs' if (current_user != user) %>
       </td>
     </tr>
   <% end %>

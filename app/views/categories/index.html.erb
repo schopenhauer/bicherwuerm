@@ -14,15 +14,15 @@
   <tbody>
   <% @categories.each do |category| %>
     <tr>
-      <td><b><%= link_to category.name, edit_category_path(category.id) %></b></td>
+      <td><b><%= link_to category.name, edit_category_path(category) %></b></td>
       <td><%= category.description %></td>
-      <td><%= pluralize(Book.where(category_id: category.id).size, 'book') %>
-        (<%= number_to_percentage(Book.where(category_id: category.id).size.to_f / @total_book_count * 100, precision: 1) %>)
+      <td><%= pluralize(category.books.size, 'book') %>
+        (<%= number_to_percentage(category.books.size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
       <td><%= timestamp(category.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
-                    category_books_path(category.id), :class => 'btn btn-default btn-xs' %>
+                    category_books_path(category), :class => 'btn btn-default btn-xs' %>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                     edit_category_path(category), :class => 'btn btn-primary btn-xs' %>
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
