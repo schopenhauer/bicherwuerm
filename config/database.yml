@@ -7,7 +7,7 @@
 
 default: &default
   adapter: sqlite3
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
@@ -24,5 +24,5 @@ test:
 production:
   adapter: mysql2
   url: <%= ENV['DATABASE_URL'] %>
-  encoding: utf8
-  pool: 5
+  #encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

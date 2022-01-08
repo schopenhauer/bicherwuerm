@@ -8,5 +8,10 @@
 
 ## New features
 
-- Book ratings (cf. https://github.com/wbotelhos/rating)
+- Book ratings (cf. https://github.com/wbotelhos/rating) only works on PostgreSQL
 - Access right management
+
+## Refactoring
+
+ENV.fetch instead of ENV[]
+change grid settings in app
