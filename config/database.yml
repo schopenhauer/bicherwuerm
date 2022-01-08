@@ -28,5 +28,5 @@ staging:
 production:
   adapter: mysql2
   encoding: utf8
-  url: <%= ENV.fetch("DATABASE_URL") %>
+  url: <%= ENV.fetch("DATABASE_URL") { 'mysql2://localhost' } %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

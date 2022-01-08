@@ -62,7 +62,7 @@ group :development do
   gem "sqlite3", "~> 1.4"
 end
 
-group :production do
+group :production, :staging do
   # gem "pg"
   gem "mysql2"
   gem "sendgrid-actionmailer"
