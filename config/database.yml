@@ -21,10 +21,6 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-staging:
-  <<: *default
-  database: db/heroku.sqlite3
-
 production:
   adapter: mysql2
   encoding: utf8

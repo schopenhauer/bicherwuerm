@@ -44,6 +44,12 @@ source "https://rails-assets.org" do
   gem "rails-assets-chartkick"
 end
 
+group :production do
+  gem "mysql2"
+  # gem "pg"
+  gem "sendgrid-actionmailer"
+end
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -60,12 +66,6 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "sqlite3", "~> 1.4"
-end
-
-group :production, :staging do
-  # gem "pg"
-  gem "mysql2"
-  gem "sendgrid-actionmailer"
 end
 
 group :test do
