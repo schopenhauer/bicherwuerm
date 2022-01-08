@@ -1,0 +1,70 @@
+<% provide(:title, 'Amazon Image Robot') %>
+
+<ul>
+  <li>Enrich the book library with additional Amazon information such as book cover, author, publisher and ISBN codes.
+  </li>
+  <li>Simply select one of the cover images below to associate it with a particular book.</li>
+  <li><%= @total_book_without_info_count %> out of <%= @total_book_count %> books &mdash; <%= @percentage %>% &mdash; do
+    not contain any Amazon information or book cover.
+  </li>
+</ul>
+
+<hr/>
+
+<% unless (@images.empty? && @total_book_without_info_count == 0) %>
+
+  <h4>
+    Search images by
+    title
+    ( <%= (@hit.title == params[:q] || params[:q].nil?) ? content_tag(:b, @hit.title) : (link_to @hit.title, amazon_robot_path + '?q=' + @hit.title, title: 'Search by title') %>
+    ) ,
+    <% if @hit.title != @alternative_title %>
+      altenative title
+      ( <%= (@alternative_title == params[:q]) ? content_tag(:b, @alternative_title) : (link_to @alternative_title, amazon_robot_path + '?q=' + @alternative_title, title: 'Search by alternative title') %>
+      ) ,
+    <% end %>
+    author
+    ( <%= (@hit.author == params[:q]) ? content_tag(:b, @hit.author) : (link_to @hit.author, amazon_robot_path + '?q=' + @hit.author, title: 'Search by author') %>
+    ) or
+    publisher
+    ( <%= (@hit.publisher.name == params[:q]) ? content_tag(:b, @hit.publisher.name) : (link_to @hit.publisher.name, amazon_robot_path + '?q=' + @hit.publisher.name, title: 'Search by publisher') %>
+    )
+  </h4>
+
+  <%= link_to 'Skip this book', amazon_robot_path + '?id=' + @hit.id.to_s + '&skip=1', class: 'btn btn-default' %>
+
+<% else %>
+
+  <h4>
+    You are done for the day. Enjoy the sun <span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+  </h4>
+
+<% end %>
+
+<hr/>
+
+<% unless @images.empty? %>
+
+  <% @images.compact.in_groups_of(APP_CONFIG['max_columns'].to_i) do |images| %>
+    <div class="row">
+      <% images.compact.each do |image| %>
+        <div class="col-xs-<%= 12 / APP_CONFIG['max_columns'].to_i.round %>">
+          <%=
+            link_to image_tag(image[:img_url],
+                              height: image[:height],
+                              width: image[:width],
+                              class: 'img-responsive'),
+                    amazon_robot_path + '?id=' + @hit.id.to_s + '&' + parameterize(image),
+                    target: '_self',
+                    title: (!image[:title].nil? ? ("Title: " + image[:title] + "\n") : '') +
+                      (!image[:author].nil? ? ("Author: " + image[:author] + "\n") : '') +
+                      (!image[:publisher].nil? ? ("Publisher: " + image[:publisher] + "\n") : '') +
+                      (!image[:isbn].nil? ? ("ISBN: " + image[:isbn]) : ''),
+                    class: 'thumbnail'
+          %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+<% end %>

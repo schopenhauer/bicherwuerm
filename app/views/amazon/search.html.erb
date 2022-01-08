@@ -1,0 +1,38 @@
+<% provide(:title, "Amazon Image Search") %>
+
+<p>
+  The Amazon Image Search tool allows you to search for book covers using the
+  <%= link_to 'Amazon Product Advertising API', 'https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html', target: '_new' %>.
+</p>
+
+<%= form_tag(amazon_search_path, method: 'get', id: 'search-form', enforce_utf8: false, role: 'search') do %>
+  <div class="form-group">
+    <%= hidden_field_tag :id, params[:id] if params[:id] %>
+    <%= text_field_tag :q, params[:q], placeholder: 'Keywords', class: 'form-control', autofocus: true %>
+  </div>
+  <%= submit_tag 'Search', :name => nil, :class => 'btn btn-default' %>
+<% end %>
+
+<% unless @images.empty? %>
+
+  <hr/>
+
+  <% @images.in_groups_of(APP_CONFIG['max_columns'].to_i) do |images| %>
+    <div class="row">
+      <% images.compact.each do |image| %>
+        <div class="col-xs-<%= 12 / APP_CONFIG['max_columns'].to_i.round %>">
+          <%=
+            link_to image_tag(image[:img_url], height: image[:height], width: image[:width], class: 'img-responsive'),
+                    (params[:id] ? (add_amazon_path + '?q=' + params[:q] + '&id=' + params[:id] + '&' + parameterize(image)) : image[:url]),
+                    title: (!image[:title].nil? ? ("Title: " + image[:title] + "\n") : '') +
+                      (!image[:author].nil? ? ("Author: " + image[:author] + "\n") : '') +
+                      (!image[:publisher].nil? ? ("Publisher: " + image[:publisher] + "\n") : '') +
+                      (!image[:isbn].nil? ? ("ISBN: " + image[:isbn]) : ''),
+                    class: 'thumbnail'
+          %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,12 @@
+<%= simple_form_for @idea, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <%= f.input :title, autofocus: true %>
+  <%= f.input :author %>
+  <%= f.input :description, as: :text %>
+  <%= f.submit "Save", class: "btn btn-success" %>
+
+<% end %>
