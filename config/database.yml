@@ -23,6 +23,7 @@ test:
 
 production:
   adapter: mysql2
-  url: <%= ENV['DATABASE_URL'] %>
-  #encoding: utf8
+  url: <%= ENV.fetch("DATABASE_URL") %>
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+2
