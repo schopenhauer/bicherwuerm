@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 
-gem "rails", "~> 7.0.1"
+gem "rails", "~> 7.0.0"
 gem "bundler", "~> 2"
 gem "importmap-rails"
 gem "dotenv-rails"
@@ -18,12 +18,12 @@ gem "faker"
 gem "humanize_boolean"
 gem "filesize"
 gem "friendly_id"
-gem "sass-rails", "~> 6"
+#gem "sass-rails", "~> 6"
 gem "bootstrap-sass"
 gem "bootstrap-sass-extras"
 gem "bootswatch-rails"
 gem "simple_form"
-gem "autoprefixer-rails"
+#gem "autoprefixer-rails"
 gem "uglifier", ">= 1.3.0"
 gem "turbo-rails"
 gem "sprockets-rails"
@@ -50,29 +50,20 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  # gem "spring"
-  #gem "byebug"
-  #gem "lol_dba"
+  gem "lol_dba"
   gem "rack-mini-profiler"
-  #gem "bullet"
-  #gem "rubocop"
-  #gem "listen"
-  #gem "seed_dump"
-  #gem "seed-fu", "~> 2.3"
-  #gem "spring"
-  #gem "better_errors"
-  #gem "binding_of_caller"
+  gem "rubocop"
+  gem "seed_dump"
+  gem "seed-fu", "~> 2.3"
+  gem "better_errors"
+  gem "binding_of_caller"
   gem "sqlite3", "~> 1.4"
-  #gem "rspec"
-  # Adds support for Capybara system testing and selenium driver
-  #gem "capybara", "~> 2.13"
-  #gem "selenium-webdriver"
 end
 
 group :production do
   # gem "pg"
   gem "mysql2"
-  #gem "mini_racer"
+  gem "sendgrid-actionmailer"
 end
 
 group :test do
