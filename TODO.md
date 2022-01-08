@@ -2,14 +2,14 @@
 
 ## Bug fixes
 
-- Clean up error messages and localisation files
+- Upgrade Bootswatch themes + update layout
+- Upgrade Devise.rb
+- Admin panel: edit users' account settings
+- Localisation: Clean up error messages and localisation files
 - Amazon Image Robot: Create affiliate account credentials to test `vacuum` gem
 - Amazon Image Robot: Select `SearchIndex` for games, audio and video
 
 ## New features
 
-- Upgrade Bootswatch themes
-- Change grid settings
-- Book ratings (cf. https://github.com/wbotelhos/rating) -- only works on PostgreSQL
+- Book ratings (cf. https://github.com/wbotelhos/rating) - incompatible with SQLite
 - Access right management
-- Admin: edit someone else's account settings & name & password
