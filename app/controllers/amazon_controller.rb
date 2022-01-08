@@ -39,7 +39,7 @@ class AmazonController < ApplicationController
   private
 
   def valid_credentials?
-    ENV['AWS_ACCESS_KEY_ID'] && ENV['AWS_SECRET_ACCESS_KEY']
+    Rails.application.credentials.aws.access_key && Rails.application.credentials.aws.secret_key
   end
 
   def attach_amazon_details
@@ -67,8 +67,8 @@ class AmazonController < ApplicationController
   def query(keyword)
     request = Vacuum.new(
       marketplace: 'GB',
-      access_key: ENV['AWS_ACCESS_KEY_ID'],
-      secret_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      access_key: Rails.application.credentials.aws.access_key,
+      secret_key: Rails.application.credentials.aws.secret_key,
       partner_tag: 'foobar'
     )
     params = {

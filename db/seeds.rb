@@ -11,29 +11,36 @@ Language.create(name: 'Swedish', local: 'Svenska', acronym: 'se')
 
 # Populate categories
 Category.create(name: 'Book', description: 'Bicher')
-Category.create(name: 'eBook', description: 'Kindle, etc.')
+Category.create(name: 'eBook', description: 'Kindle, ePUB/PDF, etc.')
+Category.create(name: 'Audiobook', description: 'Héierbuch, etc.')
 Category.create(name: 'Map', description: 'Landkaarten, etc.')
-Category.create(name: 'Audiobook', description: 'Hörbücher, etc.')
-Category.create(name: 'ePUB/PDF')
-Category.create(name: 'Audio CD')
-Category.create(name: 'DVD')
+Category.create(name: 'Music', description: 'Audio CD, MP3, etc.')
+Category.create(name: 'Video', description: 'VHS, DVD, BluRay, etc.')
 
-# Populate publishers (from JSON file)
-publishers = ActiveSupport::JSON.decode(File.read('db/publishers.json'))
-publishers.each do |publisher|
-  Publisher.create(name: publisher['name'], description: publisher['description'], website: publisher['website'])
-end
+if Rails.env.production?
 
-# Populate genres (from JSON file)
-genres = ActiveSupport::JSON.decode(File.read('db/genres.json'))
-genres.each do |genre|
-  Genre.create(name: genre['name'], description: genre['description'])
+  # Populate publishers (from JSON file)
+  publishers = ActiveSupport::JSON.decode(File.read('db/seeds/publishers.json'))
+  publishers.each do |publisher|
+    Publisher.create(name: publisher['name'], description: publisher['description'], website: publisher['website'])
+  end
+
+  # Populate genres (from JSON file)
+  genres = ActiveSupport::JSON.decode(File.read('db/seeds/genres.json'))
+  genres.each do |genre|
+    Genre.create(name: genre['name'], description: genre['description'])
+  end
+
+else
+  Publisher.create(name: 'Penguin Books')
+  Genre.create(name: 'Drama')
 end
 
 # Populate collections
 Collection.create([
                     { name: 'Gold', description: 'Gold Collection' },
                     { name: 'Silver', description: 'Silver Colection' },
+                    { name: 'Bronze', description: 'Bronze Colection' },
                   ])
 
 # Populate colors
@@ -58,8 +65,8 @@ User.create([
               { name: 'Alex Cass', email: 'alex.cass@bicherwuerm.org', password: 'password', admin: false, encrypted_password: '$2a$10$vZByqNJMfmadnUqHTqKQjuYJtYmGmwDaSfn.V0zjRADPSXQibPYEG' }
             ])
 
-# Generate fake books
-10.times do
+# Generate books
+25.times do
   Book.create(
     title: Faker::Address.street_name,
     author: Faker::Name.name,
@@ -68,6 +75,7 @@ User.create([
     publisher_id: rand(1..Publisher.count),
     category_id: rand(1..Category.count),
     language_id: rand(1..Language.count),
-    genre_id: rand(1..Genre.count)
+    genre_id: rand(1..Genre.count),
+    color_id: rand(1..Color.count)
   )
 end

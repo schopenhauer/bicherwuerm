@@ -19,10 +19,9 @@
       <td><%= language.local %></td>
       <td><%= image_tag 'flags/' + language.acronym + '.png' if language.acronym? %> <%= language.acronym %></td>
       <td><%= pluralize(Book.where(language_id: language.id).size, 'book') %>
-        (<%= number_to_percentage(Book.where(language_id: language.id).size.to_f / @total_book_count * 100, precision: 1) %>
-        )
+        (<%= number_to_percentage(Book.where(language_id: language.id).size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
-      <td><%= safe_timestamp(language.updated_at) %></td>
+      <td><%= timestamp(language.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
                     language_books_path(language.slug), :class => 'btn btn-default btn-xs' %>

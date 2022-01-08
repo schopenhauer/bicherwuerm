@@ -17,7 +17,7 @@ class BackupsController < ApplicationController
       stdin, stdout, _stderr = Open3.popen3(command)
       stdin.puts(config[:password])
       if stdout.gets.nil?
-        flash[:success] = 'The new backup has been launched... enjoy your coffee.'
+        flash[:success] = 'The new backup has been launched.'
       else
         flash[:error] = "Oops, something went wrong. The console returned an error message: #{stdout.gets}"
       end

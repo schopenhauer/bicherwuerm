@@ -14,14 +14,14 @@
           <%= f.association :publisher, collection: Publisher.order('name ASC') %>
           <%= f.association :language, collection: Language.order('local ASC'), label_method: :local %>
           <%= f.association :genre, collection: Genre.order('name ASC') %>
-          <%= f.association :user, :label => 'Owner' %>
           <% if params[:action] == 'new' %>
             <%= f.association :category, collection: Category.order('name ASC'), selected: Category.where(DEFAULT_CATEGORY).first.id %>
           <% else %>
             <%= f.association :category, collection: Category.order('name ASC') %>
           <% end %>
-          <%= f.association :color, collection: Color.order('name ASC') %>
+          <%= f.association :user, :label => 'Owner' %>
           <%= f.input :location %>
+          <%= f.association :color, collection: Color.order('name ASC') %>
           <%= f.association :collection, collection: Collection.order('name ASC') %>
           <%= f.input :description, as: :text %>
         </div>

@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   resources :users, except: :create
   post 'create_user' => 'users#create', as: :create_user
 
-  resources :books
-  resources :ideas
+  resources :books, except: :show
+  resources :ideas, except: :show
 
-  resources :collections, :languages, :publishers, :categories, :users, :genres, :colors do
-    resources :books, only: [:index]
+  resources :collections, :languages, :publishers, :categories, :users, :genres, :colors, except: :show do
+    resources :books, only: :index
   end
 
   get 'amazon/add' => 'amazon#add_amazon_details', as: :add_amazon

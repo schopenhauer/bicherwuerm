@@ -17,10 +17,9 @@
       <td><b><%= link_to category.name, edit_category_path(category.id) %></b></td>
       <td><%= category.description %></td>
       <td><%= pluralize(Book.where(category_id: category.id).size, 'book') %>
-        (<%= number_to_percentage(Book.where(category_id: category.id).size.to_f / @total_book_count * 100, precision: 1) %>
-        )
+        (<%= number_to_percentage(Book.where(category_id: category.id).size.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
-      <td><%= safe_timestamp(category.updated_at) %></td>
+      <td><%= timestamp(category.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
                     category_books_path(category.id), :class => 'btn btn-default btn-xs' %>

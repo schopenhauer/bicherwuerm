@@ -1,6 +1,6 @@
 class Language < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :acronym, use: :slugged
 
   has_many :books
 

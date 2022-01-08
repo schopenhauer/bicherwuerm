@@ -21,7 +21,7 @@
       <td><%= pluralize(color.books.count, 'book') %>
         (<%= number_to_percentage(color.books.count.to_f / @total_book_count * 100, precision: 1) %>)
       </td>
-      <td><%= safe_timestamp(color.updated_at) %></td>
+      <td><%= timestamp(color.updated_at) %></td>
       <td>
         <%= link_to t('.show', :default => t("helpers.links.show")),
                     color_books_path(color), :class => 'btn btn-default btn-xs' %>

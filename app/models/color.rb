@@ -1,12 +1,12 @@
 class Color < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+  friendly_id :name, use: :slugged
 
   has_many :books
 
   validates :name, presence: true
   validates :hex_code, presence: false, format: {
-    with: VALID_COLOR,
+    with: %r{^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$},
     multiline: true
   }
 

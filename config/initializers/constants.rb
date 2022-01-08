@@ -2,11 +2,8 @@ APP_CONFIG = YAML.load_file("#{Rails.root}/config/app.yml")[Rails.env]
 
 BACKUP_FOLDER = File.join(Rails.root, 'public/sql')
 
-VALID_EMAIL = %r{\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z}
-VALID_COLOR = %r{^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$}
-
-DEFAULT_USER = { name: 'Uncategorized', email: "no-reply@#{ENV['DOMAIN_NAME'] || 'localhost'}" }
+DEFAULT_USER = { name: 'John Smith', email: 'john.smith@bicherwuerm.org' }
 DEFAULT_CATEGORY = { name: 'Book' }
-DEFAULT_LANGUAGE = { name: 'Uncategorized', local: 'Uncategorized', acronym: 'unknown' }
+DEFAULT_LANGUAGE = { name: 'English', local: 'English', acronym: 'en' }
 DEFAULT_GENRE = { name: 'Uncategorized' }
 DEFAULT_PUBLISHER = { name: 'Uncategorized' }
