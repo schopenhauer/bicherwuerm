@@ -13,5 +13,7 @@
 
 ## Refactoring
 
-ENV.fetch instead of ENV[]
-change grid settings in app
+- ENV.fetch instead of ENV[]
+- move ENV to credentials.yml.enc
+- Change grid settings in app
+- Bootswatch themes

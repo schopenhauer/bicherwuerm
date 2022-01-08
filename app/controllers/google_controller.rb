@@ -14,7 +14,7 @@ class GoogleController < ApplicationController
   private
 
   def valid_credentials?
-    ENV['GOOGLE_CLIENT_CX'] && ENV['GOOGLE_CLIENT_KEY']
+    Rails.application.credentials.google.client_cx && Rails.application.credentials.google.client_key
   end
 
   def query(q)
@@ -25,8 +25,8 @@ class GoogleController < ApplicationController
         q: q,
         searchType: 'image',
         fields: 'items',
-        cx: ENV['GOOGLE_CLIENT_CX'],
-        key: ENV['GOOGLE_CLIENT_KEY']
+        cx: Rails.application.credentials.google.client_cx,
+        key: Rails.application.credentials.google.client_key
       }
     )
     data = MultiJson.load(response.body)

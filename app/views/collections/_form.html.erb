@@ -1,9 +1,0 @@
-<%= simple_form_for @collection, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f| %>
-
-  <%= f.error_notification %>
-
-  <%= f.input :name, label: 'Collection', autofocus: true %>
-  <%= f.input :description, as: :text %>
-  <%= f.submit "Save", class: "btn btn-success" %>
-
-<% end %>
