@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'multi_json'
+gem 'rating'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-highcharts'

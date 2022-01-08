@@ -1,9 +1,10 @@
 <% provide(:title, "Gooogle Image Search") %>
 
+<h4>Google Image Search</h4>
+
 <p>
-  The Google Image Search tool allows you to search for images and pictures on
-  the <%= link_to 'Google Custom Search API', 'https://developers.google.com/api-client-library/ruby/apis/customsearch/v1', target: '_new' %>
-  .
+  The Google Image Search tool allows you to search for images and pictures using
+  the <%= link_to 'Google Custom Search JSON API', 'https://developers.google.com/custom-search/v1/overview', target: '_new' %>.
 </p>
 
 <%= form_tag(google_search_path, method: "get", id: "search-form", enforce_utf8: false, role: 'search') do %>

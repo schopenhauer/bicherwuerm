@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :ideas
 
   before_save :downcase_email
+
   after_destroy :reassign_books
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -19,6 +20,8 @@ class User < ActiveRecord::Base
             length: { maximum: 255 },
             format: { with: VALID_EMAIL },
             uniqueness: { case_sensitive: false }
+
+  rating as: :author
 
   private
 

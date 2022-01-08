@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_29_123800) do
+ActiveRecord::Schema.define(version: 2022_01_07_053133) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
     t.integer "user_id"
     t.integer "color_id"
     t.integer "collection_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "amazon_title"
     t.string "amazon_author"
     t.string "amazon_asin"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
     t.string "amazon_publisher"
     t.string "amazon_url"
     t.string "amazon_image_url"
-    t.datetime "amazon_updated_at"
+    t.datetime "amazon_updated_at", precision: 6
     t.boolean "amazon_info", default: false
     t.boolean "amazon_skipped", default: false
     t.index ["category_id"], name: "index_books_on_category_id"
@@ -50,23 +50,23 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "collections", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "colors", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "hex_code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_colors_on_slug", unique: true
   end
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: 6
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
     t.string "author"
     t.string "description"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_ideas_on_user_id"
   end
 
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
     t.string "name"
     t.string "local"
     t.string "acronym"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.index ["slug"], name: "index_languages_on_slug", unique: true
   end
@@ -114,8 +114,40 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
     t.string "name"
     t.string "website"
     t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rating_rates", force: :cascade do |t|
+    t.decimal "value", precision: 25, scale: 16, default: "0.0"
+    t.string "author_type", limit: 10, null: false
+    t.integer "author_id", null: false
+    t.string "resource_type", limit: 10, null: false
+    t.integer "resource_id", null: false
+    t.string "scopeable_type", limit: 10
+    t.integer "scopeable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id", "resource_type", "resource_id", "scopeable_type", "scopeable_id"], name: "index_rating_rates_on_author_and_resource_and_scopeable", unique: true
+    t.index ["author_type", "author_id"], name: "index_rating_rates_on_author"
+    t.index ["resource_type", "resource_id"], name: "index_rating_rates_on_resource"
+    t.index ["scopeable_type", "scopeable_id"], name: "index_rating_rates_on_scopeable"
+  end
+
+  create_table "rating_ratings", force: :cascade do |t|
+    t.decimal "average", precision: 25, scale: 16, default: "0.0"
+    t.decimal "estimate", precision: 25, scale: 16, default: "0.0"
+    t.integer "sum", default: 0
+    t.integer "total", default: 0
+    t.string "resource_type", limit: 10, null: false
+    t.integer "resource_id", null: false
+    t.string "scopeable_type", limit: 10
+    t.integer "scopeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["resource_type", "resource_id", "scopeable_type", "scopeable_id"], name: "index_rating_rating_on_resource_and_scopeable", unique: true
+    t.index ["resource_type", "resource_id"], name: "index_rating_ratings_on_resource"
+    t.index ["scopeable_type", "scopeable_id"], name: "index_rating_ratings_on_scopeable"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -128,16 +160,16 @@ ActiveRecord::Schema.define(version: 2021_12_29_123800) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: 6
+    t.datetime "last_sign_in_at", precision: 6
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.boolean "admin"

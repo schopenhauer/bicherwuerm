@@ -1,9 +1,9 @@
 class AmazonController < ApplicationController
   before_action :authenticate_user!
-  before_action :valid_aws_credentials?
+  before_action :valid_credentials?
 
   def search
-    if valid_aws_credentials?
+    if valid_credentials?
       @images = params[:q] ? query(params[:q]) : []
       render 'amazon/search'
     else
@@ -12,7 +12,7 @@ class AmazonController < ApplicationController
   end
 
   def robot
-    if valid_aws_credentials?
+    if valid_credentials?
       attach_amazon_details
       books_without_info = Book.no_amazon_info.all
       @total_book_without_info_count = books_without_info.size
@@ -38,8 +38,8 @@ class AmazonController < ApplicationController
 
   private
 
-  def valid_aws_credentials?
-    APP_CONFIG['aws_access_key_id'] && APP_CONFIG['aws_secret_access_key']
+  def valid_credentials?
+    ENV['AWS_ACCESS_KEY_ID'] && ENV['AWS_SECRET_ACCESS_KEY']
   end
 
   def attach_amazon_details
@@ -66,14 +66,14 @@ class AmazonController < ApplicationController
 
   def query(keyword)
     request = Vacuum.new(
-      marketplace: APP_CONFIG['aws_locale'],
-      access_key: APP_CONFIG['aws_access_key_id'],
-      secret_key: APP_CONFIG['aws_secret_access_key'],
+      marketplace: 'GB',
+      access_key: ENV['AWS_ACCESS_KEY_ID'],
+      secret_key: ENV['AWS_SECRET_ACCESS_KEY'],
       partner_tag: 'foobar'
     )
     params = {
       # See documentation: http://docs.aws.amazon.com/AWSECommerceService/latest/DG/SearchIndices.html
-      SearchIndex: APP_CONFIG['aws_search_index'],
+      SearchIndex: 'Books',
       Keywords: keyword,
       ResponseGroup: %w(ItemAttributes Images).join(',')
     }

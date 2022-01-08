@@ -1,19 +1,18 @@
 <% provide(:title, "Amazon Image Search") %>
 
+<h4>Amazon Image Search</h4>
+
 <p>
-  The Amazon Image Search tool allows you to search for book covers through the
-  <%= link_to 'Amazon Product Advertising API', 'https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html', target: '_new' %>
-  .
+  The Amazon Image Search tool allows you to search for book covers using the
+  <%= link_to 'Amazon Product Advertising API', 'https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html', target: '_new' %>.
 </p>
 
 <%= form_tag(amazon_search_path, method: 'get', id: 'search-form', enforce_utf8: false, role: 'search') do %>
-
   <div class="form-group">
     <%= hidden_field_tag :id, params[:id] if params[:id] %>
     <%= text_field_tag :q, params[:q], placeholder: 'Keywords', class: 'form-control', autofocus: true %>
   </div>
   <%= submit_tag 'Search', :name => nil, :class => 'btn btn-default' %>
-
 <% end %>
 
 <% unless @images.empty? %>

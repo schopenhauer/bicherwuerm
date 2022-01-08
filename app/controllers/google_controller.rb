@@ -1,9 +1,9 @@
 class GoogleController < ApplicationController
   before_action :authenticate_user!
-  before_action :valid_google_credentials?
+  before_action :valid_credentials?
 
   def search
-    if valid_google_credentials?
+    if valid_credentials?
       @images = params[:q] ? query(params[:q]) : nil
       render 'google/search'
     else
@@ -13,29 +13,25 @@ class GoogleController < ApplicationController
 
   private
 
-  def valid_google_credentials?
-    APP_CONFIG['google_client_cx'] && APP_CONFIG['google_client_key']
+  def valid_credentials?
+    ENV['GOOGLE_CLIENT_CX'] && ENV['GOOGLE_CLIENT_KEY']
   end
 
-  def query(query, safe_search = :off)
-    query_params = {
-      v: '1.0',
-      searchType: 'image',
-      q: query,
-      safe: safe_search,
-      fields: 'items',
-      rsz: 8,
-      cx: APP_CONFIG['google_client_cx'],
-      key: APP_CONFIG['google_client_key']
-    }
-
-    http_response = HTTP.get(
+  def query(q)
+    response = HTTP.get(
       'https://www.googleapis.com/customsearch/v1',
-      params: query_params
+      params: {
+        v: '1.0',
+        q: q,
+        searchType: 'image',
+        fields: 'items',
+        cx: ENV['GOOGLE_CLIENT_CX'],
+        key: ENV['GOOGLE_CLIENT_KEY']
+      }
     )
-    data = MultiJson.load(http_response.body)
+    data = MultiJson.load(response.body)
 
-    if http_response.status == 200
+    if response.status == 200
       @images = data['items'] if data['items']
     else
       @images = nil
