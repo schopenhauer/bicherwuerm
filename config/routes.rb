@@ -3,29 +3,30 @@ Rails.application.routes.draw do
 
   root 'goodies#home'
 
+  get 'about' => 'goodies#about'
+  get 'statistics' => 'goodies#statistics'
+
+  post 'create_user' => 'users#create', as: :create_user
   resources :users, except: :create do
     resources :ideas, only: :index
   end
-  
-  post 'create_user' => 'users#create', as: :create_user
 
   resources :books, except: :show
+  get 'loans' => 'books#loans'
+
   resources :ideas, except: :show
 
   resources :collections, :languages, :publishers, :categories, :users, :genres, :colors, except: :show do
     resources :books, only: :index
   end
 
-  get 'amazon/add' => 'amazon#add_amazon_details', as: :add_amazon
-  post 'books/reset/:id' => 'books#remove_amazon_details', as: :remove_amazon
-
-  get 'about' => 'goodies#about'
-  get 'loans' => 'books#loans'
-  get 'statistics' => 'goodies#statistics'
-
   get 'google/search' => 'google#search'
+
   get 'amazon/search' => 'amazon#search'
   get 'amazon/robot' => 'amazon#robot'
+  # TODO: post and delete -> instead of get and post?
+  get 'amazon/add' => 'amazon#add_amazon_details', as: :add_amazon
+  post 'books/reset/:id' => 'books#remove_amazon_details', as: :remove_amazon
 
   get 'backups' => 'backups#show'
   post 'backups/new' => 'backups#new', as: :new_backup

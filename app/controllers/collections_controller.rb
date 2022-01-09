@@ -22,7 +22,6 @@ class CollectionsController < ApplicationController
 
   def create
     @collection = Collection.new(collection_params)
-
     respond_to do |format|
       if @collection.save
         format.html { redirect_to edit_collection_path(@collection), notice: 'Collection was successfully created.' }

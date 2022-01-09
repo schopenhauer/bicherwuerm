@@ -1,5 +1,5 @@
 class GenresController < ApplicationController
-  before_action :set_genre, only: [:edit, :update, :destroy]
+  before_action :set_genre, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -8,6 +8,9 @@ class GenresController < ApplicationController
     if params[:q]
       @genres = @genres.where('(name LIKE ? OR description LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
     end
+  end
+
+  def show
   end
 
   def new

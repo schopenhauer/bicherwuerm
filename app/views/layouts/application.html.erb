@@ -9,18 +9,29 @@
     <%= favicon_link_tag 'favicon.ico' %>
     <%= javascript_importmap_tags %>
   </head>
+
   <body>
 
-  <%= render 'layouts/navbar' %>
+    <%= render 'layouts/navbar' %>
 
-  <div class="container">
-    <%= render 'layouts/breadcrumbs' %>
-    <%= bootstrap_flash %>
-    <%= yield %>
-    <!-- <%= debug(params) if Rails.env.development? %> -->
-  </div>
+    <div class="container">
 
-  <%= render 'layouts/footer' %>
+      <%= render 'layouts/breadcrumbs' %>
+
+      <% unless notice.blank? %>
+      <%= boostrap_flash %>
+      <div class="alert alert-success alert-dismissable"><button name="button" type="button" class="close" data-dismiss="alert">×</button><%= notice %></div>
+      <!-- <p style="color: green"><%= notice %></p> -->
+      <% end %>
+
+      <%= yield %>
+
+      <% if Rails.env.development? %>
+        <%= debug(params) %>
+        <!-- render time: <%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %> seconds -->
+      <% end %>
+
+    </div>
 
   </body>
 </html>
