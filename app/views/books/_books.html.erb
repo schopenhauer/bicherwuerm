@@ -21,7 +21,7 @@
       <td>
         <% if book.color %>
           <a href="<%= color_books_path(book.color) %>">
-            <span class="glyphicon glyphicon-stop" aria-hidden="true" style="color: <%= book.color.hex_code %>" title="<%= book.color.name %> books"></span>
+            <span class="glyphicon glyphicon-stop" aria-hidden="true" style="color: <%= book.color.hex_code %>" title="<%= book.color.name %>"></span>
           </a>
         <% end %>
       </td>
@@ -39,8 +39,8 @@
       <td><%= link_to book.user.name, user_books_path(book.user) %></td>
       <td><%= book.location %></td>
       <td>
-        <%= link_to image_tag('icon_amazon2.png', height: 20, width: 20), book.amazon_url, target: '_blank', title: 'Go to Amazon\'s product page (external link)' if book.amazon_url? %>
-        <%= link_to image_tag('icon_publisher.png', height: 20, width: 20), book.publisher.website, target: '_blank', title: 'Go to publisher\'s website (external link)' unless book.publisher.website.blank? %>
+        <%= link_to image_tag('icon_amazon.png', size: 20), book.amazon_url, target: '_blank', title: 'Go to Amazon\'s product page (external link)' if book.amazon_url? %>
+        <%= link_to image_tag('icon_publisher.png', size: 20), book.publisher.website, target: '_blank', title: 'Go to publisher\'s website (external link)' if book.publisher.website? %>
       </td>
       <td>
         <%= link_to t('.edit', :default => t("helpers.links.edit")),

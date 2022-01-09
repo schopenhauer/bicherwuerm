@@ -1,5 +1,5 @@
 class ColorsController < ApplicationController
-  before_action :set_color, only: [:show, :edit, :update, :destroy]
+  before_action :set_color, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -8,9 +8,6 @@ class ColorsController < ApplicationController
     if params[:q]
       @colors = @colors.where('(name LIKE ? OR description LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
     end
-  end
-
-  def show
   end
 
   def new
@@ -22,7 +19,6 @@ class ColorsController < ApplicationController
 
   def create
     @color = Color.new(color_params)
-
     respond_to do |format|
       if @color.save
         format.html { redirect_to edit_color_path(@color), notice: 'Color was successfully created.' }

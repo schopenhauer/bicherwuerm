@@ -6,7 +6,7 @@ class CollectionsController < ApplicationController
     @total_book_count = Book.all.size
     @collections = Collection.page(params[:page]).per(APP_CONFIG['max_rows']).order('name ASC')
     if params[:q]
-      @collections = @collections.where('(name LIKE ? OR description LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%")
+      @collections = @collections.where(["name LIKE ? OR description LIKE ?", params[:q], params[:q]])
     end
   end
 

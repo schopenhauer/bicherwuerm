@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -7,9 +7,6 @@ class IdeasController < ApplicationController
     if params[:user_id]
       @ideas = @ideas.find_by(user_id: params[:user_id]).all
     end
-  end
-
-  def show
   end
 
   def new

@@ -1,5 +1,5 @@
 class LanguagesController < ApplicationController
-  before_action :set_language, only: [:show, :edit, :update, :destroy]
+  before_action :set_language, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -8,9 +8,6 @@ class LanguagesController < ApplicationController
     if params[:q]
       @languages = @languages.where('(name LIKE ? OR locale LIKE ? OR acronym LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
     end
-  end
-
-  def show
   end
 
   def new
