@@ -4,8 +4,8 @@ class IdeasController < ApplicationController
 
   def index
     @ideas = Idea.page(params[:page]).per(APP_CONFIG['max_rows']).order('title ASC')
-    if params[:q]
-      @ideas = @ideas.where('(title LIKE ? OR author LIKE ? OR description LIKE ?)', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    if params[:user_id]
+      @ideas = @ideas.find_by(user_id: params[:user_id]).all
     end
   end
 

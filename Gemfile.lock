@@ -238,8 +238,6 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.0.0)
     rake (13.0.6)
-    rating (0.11.0)
-      activerecord
     regexp_parser (2.2.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -337,7 +335,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
   bootsnap
@@ -368,7 +365,6 @@ DEPENDENCIES
   rails (= 7.0.0)
   rails-assets-chartkick!
   rails-assets-highcharts!
-  rating
   rubocop
   sass-rails (~> 6)
   seed-fu (~> 2.3)

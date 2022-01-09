@@ -21,8 +21,6 @@ class User < ActiveRecord::Base
             format: { with: %r{\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z} },
             uniqueness: { case_sensitive: false }
 
-  rating as: :author
-
   private
 
   def downcase_email

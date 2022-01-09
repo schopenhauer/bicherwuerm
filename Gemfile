@@ -28,10 +28,8 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "jquery-rails"
 gem "jbuilder"
-gem "bcrypt", "~> 3.1.7"
 gem "puma", "~> 5.0"
 gem "multi_json"
-gem "rating"
 gem "bootsnap", require: false
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 

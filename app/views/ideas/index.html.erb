@@ -19,7 +19,7 @@
       <td><b><%= link_to idea.title, edit_idea_path(idea) %></b></td>
       <td><b><%= idea.author %></b></td>
       <td><%= idea.description %></td>
-      <td><%= idea.user.name %></td>
+      <td><%= link_to idea.user.name, user_ideas_path(idea) %></td>
       <td><%= timestamp(idea.created_at) %></td>
       <td><%= timestamp(idea.updated_at) %></td>
       <td>

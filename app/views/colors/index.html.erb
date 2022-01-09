@@ -15,7 +15,7 @@
   <tbody>
   <% @colors.each do |color| %>
     <tr>
-      <td><b><%= link_to color.name, edit_color_path(color.id) %></b></td>
+      <td><b><%= link_to color.name, edit_color_path(color) %></b></td>
       <td><%= color.description %></td>
       <td><%= content_tag(:span, color.hex_code, style: "font-weight: bold; color: " + color.hex_code) if color.hex_code? %></td>
       <td><%= pluralize(color.books.size, 'book') %>

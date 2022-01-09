@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   root 'goodies#home'
 
-  resources :users, except: :create
+  resources :users, except: :create do
+    resources :ideas, only: :index
+  end
+  
   post 'create_user' => 'users#create', as: :create_user
 
   resources :books, except: :show
