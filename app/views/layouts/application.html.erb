@@ -18,9 +18,9 @@
 
       <%= render 'layouts/breadcrumbs' %>
 
-      <% unless notice.blank? %>
       <%= boostrap_flash %>
-      <div class="alert alert-success alert-dismissable"><button name="button" type="button" class="close" data-dismiss="alert">×</button><%= notice %></div>
+      <% unless notice.blank? %>
+      <!-- <div class="alert alert-success alert-dismissable"><button name="button" type="button" class="close" data-dismiss="alert">×</button><%= notice %></div> -->
       <!-- <p style="color: green"><%= notice %></p> -->
       <% end %>
 

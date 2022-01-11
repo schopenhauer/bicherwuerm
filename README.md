@@ -10,7 +10,11 @@ The app can access to the [Amazon Product Advertising API](https://github.com/ha
 
 ### Minimal configuration
 
-By default, the app uses SQLite and MariaDB/MySQL in development and production environments respectively. In production, the app picks up the `DATABASE_URL` environment variable (e.g. _mysql2://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;database&gt;_).
+By default, the app uses SQLite and MariaDB/MySQL in development and production environments respectively. In production, the app picks up the `DATABASE_URL` environment variable:
+
+```
+mysql2://&lt;username&gt;:&lt;password&gt;@&lt;host&gt;/&lt;database&gt;
+```
 
 You should run `rails credentials:edit` to configure the credentials for the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum), the [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) and the [SendGrid API](https://sendgrid.com/docs/API_Reference/index.html). Please make sure to provide the `config/master.key` file or set the `RAILS_MASTER_KEY` environment variable.
 
