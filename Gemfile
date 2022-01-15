@@ -22,10 +22,6 @@ gem "sass-rails", "~> 6"
 gem "bootstrap-sass"
 gem "bootstrap-sass-extras"
 gem "bootswatch-rails"
-
-#gem "bootswatch", github: "thomaspark/bootswatch"
-#gem "boostrap"
-
 gem "simple_form"
 gem "turbo-rails"
 gem "sprockets-rails"
