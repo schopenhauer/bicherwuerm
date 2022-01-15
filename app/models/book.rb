@@ -19,8 +19,6 @@ class Book < ActiveRecord::Base
   before_save :update_loan_flag
   before_save :sanitize_strings
 
-  default_scope { order(APP_CONFIG['book_order']) }
-
   scope :loans, -> { where(loan: true) }
   scope :amazon_info, -> { where(amazon_info: true, amazon_skipped: false) }
   scope :no_amazon_info, -> { where(amazon_info: false, amazon_skipped: false) }

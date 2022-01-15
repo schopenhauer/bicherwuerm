@@ -39,13 +39,19 @@ class BooksController < ApplicationController
         @books = Book.all
       end
     end
-    @books = @books.includes(:publisher).includes(:user).includes(:category)
-                   .includes(:genre).includes(:language).page(params[:page])
-                   .per(APP_CONFIG['max_rows'])
+    @books = paginate(@books.order(APP_CONFIG['book_order']))
   end
 
-  def loans
-    @books = index.loans
+  def outstanding_loans
+    @books = paginate(Book.loans.order(updated_at: :desc))
+  end
+
+  def recently_created
+    @books = paginate(Book.order(created_at: :desc))
+  end
+
+  def recently_updated
+    @books = paginate(Book.order(updated_at: :desc))
   end
 
   def show
@@ -111,6 +117,10 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def paginate(books)
+    books.page(params[:page]).per(APP_CONFIG['max_rows'])
+  end
 
   def set_book
     @book = Book.find(params[:id])

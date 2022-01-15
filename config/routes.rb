@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :books, except: :show
-  get 'loans' => 'books#loans'
+  get 'loans' => 'books#outstanding_loans', as: :outstanding_loans
+  get 'recent/new' => 'books#recently_created', as: :recently_created
+  get 'recent/updated' => 'books#recently_updated', as: :recently_updated
 
   resources :ideas, except: :show
 
@@ -21,7 +23,6 @@ Rails.application.routes.draw do
   end
 
   get 'google/search' => 'google#search'
-
   get 'amazon/search' => 'amazon#search'
   get 'amazon/robot' => 'amazon#robot'
   # TODO: post and delete -> instead of get and post?

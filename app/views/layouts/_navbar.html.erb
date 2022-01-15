@@ -44,14 +44,17 @@
               <% if current_user.admin? %>
                 <li<%= is_active_controller?('users') %>><%= link_to "Manage Users", users_path, title: pluralize(User.all.size, 'user') %></li>
               <% end %>
+              <li class="divider"></li>
 
+              <li class="dropdown-header">Filters</li>
+              <li<%= is_active_action?('recently_created') %>><%= link_to "Recently Added", recently_created_path %></li>
+              <li<%= is_active_action?('recently_updated') %>><%= link_to "Recently Updated", recently_updated_path %></li>
+              <li<%= is_active_action?('outstanding_loans') %>><%= link_to "Outstanding Loans", outstanding_loans_path, title: pluralize(Book.loans.size, 'loan') %></li>
               <li class="divider"></li>
 
               <li class="dropdown-header">Tools</li>
-              <li<%= is_active_action?('loans') %>><%= link_to "Outstanding Loans", loans_path, title: pluralize(Book.loans.size, 'loan') %></li>
               <li<%= is_active_action?('statistics') %>><%= link_to "Book Statistics", statistics_path %></li>
-              <li<%= is_active_controller?('backup') %>><%= link_to "Database Backup", backups_path %></li>
-
+              <li<%= is_active_controller?('backups') %>><%= link_to "Database Backup", backups_path %></li>
               <li class="divider"></li>
 
               <li class="dropdown-header">External Data</li>

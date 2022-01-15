@@ -27,6 +27,7 @@
       <%= yield %>
 
       <% if Rails.env.development? %>
+        <hr />
         <%= debug(params) %>
         <!-- render time: <%= sprintf('%.3f', (Time.now.usec - @start_time).abs / 1000000.0) %> seconds -->
       <% end %>
