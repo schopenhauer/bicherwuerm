@@ -15,8 +15,14 @@
 
   <li class="active">
     <%= yield(:title) %>
-    <%= ('&mdash; filtering by ' + content_tag(:i, @filter)).html_safe unless @filter.blank? %>
-    <%= ('&mdash; looking for ' + content_tag(:i, params[:q])).html_safe unless params[:q].blank? %>
+
+    <% unless @filter.blank? %>
+    &mdash; filtering by <%= content_tag :i, @filter %>
+    <% end %>
+
+    <% unless params[:q].blank? %>
+    &mdash; looking for <%= content_tag :i, params[:q]  %>
+    <% end %>
   </li>
 
 </ol>

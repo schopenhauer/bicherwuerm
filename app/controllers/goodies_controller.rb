@@ -15,8 +15,8 @@ class GoodiesController < ApplicationController
 
   private
 
-  def safe_name(k)
-    k.nil? ? 'Unknown' : k.name
+  def safe_name(key)
+    key.try('name') || 'Unknown'
   end
 
 end

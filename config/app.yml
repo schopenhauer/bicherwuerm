@@ -2,7 +2,7 @@ defaults: &defaults
   max_rows: 15
   max_columns: 6
   date_time_format: '%e %B %Y at %H:%M'
-  book_order: 'title ASC'
+  book_order: 'books.title ASC'
 
 development:
   <<: *defaults

@@ -44,8 +44,7 @@
 
 <% end %>
 
-<br/>
-
 <% if Rails.env == 'production' %>
-  <%= link_to 'Launch Backup', new_backup_path, class: 'btn btn-default', method: :post, :data => { :confirm => 'Are you sure?' } %>
+  <br />
+  <%= link_to 'New Backup', new_backup_path, class: 'btn btn-default', method: :post, :data => { :confirm => 'Are you sure?' } %>
 <% end %>

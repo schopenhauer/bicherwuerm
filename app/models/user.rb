@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_many :ideas
 
   before_save :downcase_email
-
   after_destroy :reassign_books
 
   validates :name, presence: true, length: { maximum: 50 }

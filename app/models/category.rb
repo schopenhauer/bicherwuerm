@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: %i(slugged finders)
 
   has_many :books
 

@@ -15,10 +15,10 @@ class AmazonController < ApplicationController
     if valid_credentials?
       attach_amazon_details
       books_without_info = Book.no_amazon_info.all
-      @total_book_without_info_count = books_without_info.size
-      @total_book_count = Book.all.size
-      @percentage = (@total_book_without_info_count.to_f / @total_book_count.to_f * 100).round(1)
-      if @total_book_without_info_count > 0
+      @total_books_without_info = books_without_info.size
+      @total_books = Book.all.size
+      @percentage = (@total_books_without_info.to_f / @total_books.to_f * 100).round(0)
+      if @total_books_without_info > 0
         @hit = books_without_info.first
         @alternative_title = @hit.title.gsub(/\(.*\)/, '').strip
         @images = query(params[:q] || @hit.title) # handle nil
@@ -80,6 +80,8 @@ class AmazonController < ApplicationController
 
     response = request.search_items(query: params)
     root = Nokogiri::XML(response.body).remove_namespaces!
+    #p response.body
+    #response = request.search_items(title: 'lean startup')
     parse_items(root)
   end
 

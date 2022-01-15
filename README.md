@@ -16,7 +16,9 @@ By default, the app uses SQLite and MariaDB/MySQL in development and production 
 mysql2://username:password@host:port/database
 ```
 
-You should run `rails credentials:edit` to configure the credentials for the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum), the [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) and the [SendGrid API](https://sendgrid.com/docs/API_Reference/index.html). Please make sure to provide the `config/master.key` file or set the `RAILS_MASTER_KEY` environment variable.
+### Optional configuration
+
+You can run `rails credentials:edit` to set up credentials for the [Amazon Product Advertising API](https://github.com/hakanensari/vacuum), the [Google Custom Search JSON API](https://developers.google.com/custom-search/v1/overview) and/or the [SendGrid API](https://sendgrid.com/docs/API_Reference/index.html). In this case, please make sure to provide the `config/master.key` file or set the `RAILS_MASTER_KEY` environment variable.
 
 ```
 aws:
@@ -31,9 +33,7 @@ sendgrid:
   api_key: ...
 ```
 
-### Optional configuration
-
-You may customise the app's default values in the `config/app.yml`.
+Furthermore, you can customise the app's default values in the `config/app.yml`.
 
 ## Usage
 

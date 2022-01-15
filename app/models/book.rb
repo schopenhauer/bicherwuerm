@@ -4,7 +4,6 @@ class Book < ActiveRecord::Base
   belongs_to :category
   belongs_to :genre
   belongs_to :user
-
   belongs_to :collection, optional: true
   belongs_to :color, optional: true
 
@@ -17,7 +16,7 @@ class Book < ActiveRecord::Base
   validates :user, presence: true
 
   before_save :update_loan_flag
-  before_save :sanitize_strings
+  before_save :sanitise_strings
 
   scope :loans, -> { where(loan: true) }
   scope :amazon_info, -> { where(amazon_info: true, amazon_skipped: false) }
@@ -30,19 +29,8 @@ class Book < ActiveRecord::Base
     true
   end
 
-  def sanitize_strings
+  def sanitise_strings
     title.tr!('´', '\'')
     author.tr!('´', '\'')
-  end
-
-  class << self
-    def search(query)
-      joins(:publisher)
-        .joins(:category)
-        .joins(:genre)
-        .joins(:language)
-        .where('books.title LIKE ? OR books.author LIKE ? OR books.location LIKE ? OR books.borrower LIKE ? OR publishers.name LIKE ? OR genres.name LIKE ? OR categories.name LIKE ?',
-               "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
-    end
   end
 end

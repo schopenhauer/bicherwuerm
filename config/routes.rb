@@ -16,24 +16,24 @@ Rails.application.routes.draw do
   get 'recent/new' => 'books#recently_created', as: :recently_created
   get 'recent/updated' => 'books#recently_updated', as: :recently_updated
 
-  resources :ideas, except: :show
-
   resources :collections, :languages, :publishers, :categories, :users, :genres, :colors, except: :show do
     resources :books, only: :index
   end
 
+  resources :ideas, except: :show
+
   get 'google/search' => 'google#search'
+
   get 'amazon/search' => 'amazon#search'
   get 'amazon/robot' => 'amazon#robot'
-  # TODO: post and delete -> instead of get and post?
-  get 'amazon/add' => 'amazon#add_amazon_details', as: :add_amazon
-  post 'books/reset/:id' => 'books#remove_amazon_details', as: :remove_amazon
+  post 'amazon' => 'amazon#add_amazon_details', as: :add_amazon
+  delete 'amazon/:id' => 'books#remove_amazon_details', as: :remove_amazon
 
   get 'backups' => 'backups#show'
-  post 'backups/new' => 'backups#new', as: :new_backup
-  delete 'backups' => 'backups#remove', as: :remove_backup
-  get 'backups/:file' => 'backups#download_sql', as: :download_sql
-  get 'backups/zip/:file' => 'backups#download_zip', as: :download_zip
+  get 'backup/:file' => 'backups#download_sql', as: :download_sql
+  get 'backup/zip/:file' => 'backups#download_zip', as: :download_zip
+  post 'backup' => 'backups#new', as: :new_backup
+  delete 'backup' => 'backups#remove', as: :remove_backup
 
   match "*path" => redirect('/'), via: :all
 end

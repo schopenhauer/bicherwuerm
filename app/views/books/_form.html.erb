@@ -4,7 +4,7 @@
 
   <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-9">
       <div id="my-tab-content" class="tab-content">
 
         <div class="tab-pane active" id="book">
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
       <br>
       <%= image_tag @book.amazon_image_url if @book.amazon_image_url %>
       <% if params[:action] == 'edit' && params[:controller] == 'books' && @book.amazon_info == false %>

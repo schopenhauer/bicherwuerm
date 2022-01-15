@@ -4,42 +4,41 @@ class BooksController < ApplicationController
 
   def index
     if params[:q]
-      @books = Book.search(params[:q])
-
+      books = Book
+        .joins(:publisher)
+        .joins(:genre)
+        .joins(:category)
+        .joins(:language)
+        .where('books.title LIKE ? OR books.author LIKE ? OR books.location LIKE ? OR books.borrower LIKE ? OR publishers.name LIKE ? OR genres.name LIKE ? OR categories.name LIKE ?',
+               "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
     else
       if params[:publisher_id]
-        @books = Book.where(publisher_id: params[:publisher_id])
-        @filter = Publisher.find(params[:publisher_id]).name
-
+        books = Book.where(publisher_id: params[:publisher_id])
+        filter = Publisher.find(params[:publisher_id])
       elsif params[:category_id]
-        @books = Book.where(category_id: Category.find(params[:category_id]))
-        @filter = Category.find(params[:category_id]).name
-
+        books = Book.where(category_id: Category.find(params[:category_id]))
+        filter = Category.find(params[:category_id])
       elsif params[:language_id]
-        @books = Book.where(language_id: Language.find(params[:language_id]))
-        @filter = Language.find(params[:language_id]).name
-
+        books = Book.where(language_id: Language.find(params[:language_id]))
+        filter = Language.find(params[:language_id])
       elsif params[:genre_id]
-        @books = Book.where(genre_id: params[:genre_id])
-        @filter = Genre.find(params[:genre_id]).name
-
+        books = Book.where(genre_id: params[:genre_id])
+        filter = Genre.find(params[:genre_id])
       elsif params[:user_id]
-        @books = Book.where(user_id: params[:user_id])
-        @filter = User.find(params[:user_id]).name
-
+        books = Book.where(user_id: params[:user_id])
+        filter = User.find(params[:user_id])
       elsif params[:collection_id]
-        @books = Book.where(collection_id: params[:collection_id])
-        @filter = Collection.find(params[:collection_id]).name
-
+        books = Book.where(collection_id: params[:collection_id])
+        filter = Collection.find(params[:collection_id])
       elsif params[:color_id]
-        @books = Book.where(color_id: Color.find(params[:color_id]))
-        @filter = Color.find(params[:color_id]).name
-
+        books = Book.where(color_id: Color.find(params[:color_id]))
+        filter = Color.find(params[:color_id])
       else
-        @books = Book.all
+        books = Book.all
       end
     end
-    @books = paginate(@books.order(APP_CONFIG['book_order']))
+    @filter = filter&.name
+    @books = paginate(books.order(APP_CONFIG['book_order']))
   end
 
   def outstanding_loans
@@ -97,9 +96,10 @@ class BooksController < ApplicationController
     end
   end
 
+  # TODO: move to AmazonController?
   def remove_amazon_details
     if params[:id]
-      flash[:warning] = 'You have removed Amazon-specific information previously associated with this book.'
+      flash[:warning] = 'You have removed all Amazon-specific information associated with this book.'
       Book.update(
         params[:id],
         amazon_title: nil,
@@ -118,10 +118,6 @@ class BooksController < ApplicationController
 
   private
 
-  def paginate(books)
-    books.page(params[:page]).per(APP_CONFIG['max_rows'])
-  end
-
   def set_book
     @book = Book.find(params[:id])
   end
@@ -129,4 +125,9 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :author, :publisher_id, :category_id, :genre_id, :language_id, :user_id, :collection_id, :color_id, :borrower, :loan, :location, :description)
   end
+
+  def paginate(books)
+    books.page(params[:page]).per(APP_CONFIG['max_rows'])
+  end
+
 end

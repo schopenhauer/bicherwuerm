@@ -20,7 +20,7 @@
 /.idea
 
 /public/assets
-/public/sql/*
+/db/backup/*
 .env
 .DS_Store
 
