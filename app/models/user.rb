@@ -27,14 +27,12 @@ class User < ActiveRecord::Base
     email.downcase
   end
 
-  # Make sure each book has a user
   def reassign_books
     Book
       .where(user_id: id)
       .update_all(user_id: default_user) unless books.empty?
   end
 
-  # Assign DEFAULT_USER by default
   def default_user
     user = User.find_by(DEFAULT_USER)
     if user.nil?

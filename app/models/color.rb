@@ -13,14 +13,12 @@ class Color < ApplicationRecord
   after_destroy :reassign_books
   before_save :downcase_hex_code
 
-  # will change the slug if the name changed
   def should_generate_new_friendly_id?
     name_changed?
   end
 
   private
 
-  # Make sure book's color_id gets removed, if color deleted
   def reassign_books
     Book
       .where(color_id: id)

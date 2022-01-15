@@ -7,7 +7,6 @@ class Collection < ActiveRecord::Base
 
   private
 
-  # Make sure a book's collection_id is removed, when the collection is deleted
   def reassign_books
     Book
       .where(collection_id: id)

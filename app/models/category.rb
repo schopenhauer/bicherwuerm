@@ -8,14 +8,12 @@ class Category < ActiveRecord::Base
 
   before_destroy :reassign_books
 
-  # will change the slug if the name changed
   def should_generate_new_friendly_id?
     name_changed?
   end
 
   private
 
-  # Make sure each book has a category
   def reassign_books
     if name == DEFAULT_CATEGORY[:name]
       false
@@ -26,7 +24,6 @@ class Category < ActiveRecord::Base
     end
   end
 
-  # Assign DEFAULT_CATEGORY by default
   def default_category
     category = Category.find_by(DEFAULT_CATEGORY)
     if category.nil?
