@@ -28,7 +28,8 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "jquery-rails"
 gem "jbuilder"
-gem "puma", "~> 5.0"
+gem "puma"
+gem "nio4r"
 gem "multi_json"
 gem "bootsnap", require: false
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
