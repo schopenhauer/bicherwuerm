@@ -40,7 +40,7 @@
     "description": ""
   },
   {
-    "name": "Novels",
+    "name": "Fiction",
     "description": ""
   },
   {
@@ -60,7 +60,7 @@
     "description": ""
   },
   {
-    "name": "Handcraft",
+    "name": "Crafts",
     "description": ""
   },
   {
@@ -73,7 +73,7 @@
   },
   {
     "name": "Languages",
-    "description": "Dictionaries, Thesaurus, Letters, etc."
+    "description": "Dictionaries, Thesaurus, etc."
   },
   {
     "name": "Law",
@@ -96,14 +96,6 @@
     "description": ""
   },
   {
-    "name": "Notes",
-    "description": ""
-  },
-  {
-    "name": "Outdoor",
-    "description": ""
-  },
-  {
     "name": "Philosophy",
     "description": ""
   },
@@ -116,7 +108,7 @@
     "description": ""
   },
   {
-    "name": "Sciences",
+    "name": "Science",
     "description": ""
   },
   {
@@ -132,7 +124,7 @@
     "description": ""
   },
   {
-    "name": "Sachbuch",
+    "name": "Non-fiction",
     "description": ""
   },
   {

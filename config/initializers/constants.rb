@@ -1,4 +1,4 @@
-APP_CONFIG = YAML.load_file("#{Rails.root}/config/app.yml")[Rails.env]
+APP_CONFIG = YAML.load_file("#{Rails.root}/config/app.yml", aliases: true)[Rails.env]
 
 BACKUP_FOLDER = File.join(Rails.root, 'db/backup')
 
