@@ -10,7 +10,7 @@ The app can access to the [Amazon Product Advertising API](https://github.com/ha
 
 ### Minimal configuration
 
-By default, the app uses SQLite and MariaDB/MySQL in development and production environments respectively. In production, the app picks up the `DATABASE_URL` environment variable:
+By default, the app uses SQLite in development and MariaDB/MySQL in production environments respectively. The app picks up the `DATABASE_URL` environment variable in production:
 
 ```
 mysql2://username:password@host:port/database
